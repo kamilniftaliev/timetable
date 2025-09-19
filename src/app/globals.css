@@ -6,8 +6,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 .vertical-text {
-  writing-mode: sideways-lr;
-  text-orientation: sideways-right;
+  writing-mode: vertical-rl;
+  -moz-transform: scale(-1, -1);
+  -webkit-transform: scale(-1, -1);
+  -o-transform: scale(-1, -1);
+  -ms-transform: scale(-1, -1);
+  transform: scale(-1, -1);
+  text-orientation: mixed;
 }
 
 .inner-table {
