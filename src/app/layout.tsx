@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <ThemeProvider>
-          <DarkThemeToggle className="absolute top-4 right-1 md:right-4" />
+          <DarkThemeToggle className="absolute top-3 right-1 md:top-8 md:right-4" />
           <main className="overflow-auto">{children}</main>
         </ThemeProvider>
       </body>
