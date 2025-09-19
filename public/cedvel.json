@@ -3,7 +3,7 @@
     "name": "cedvel",
     "published": true,
     "createdAt": "2025-09-13T17:39:18.029Z",
-    "updatedAt": "2025-09-19T11:43:53.720Z",
+    "updatedAt": "2025-09-19T11:47:08.621Z",
     "schoolId": "b9554c68-b209-4af5-a210-0e325d628656",
     "schoolName": "cedvel",
     "year": "2025",
@@ -132,7 +132,7 @@
         {
             "id": "6fd24364-7680-40c6-bad0-2d96513fd8bc",
             "position": 1,
-            "name": "Русский Язык",
+            "name": "Русский язык",
             "shortName": "Рус. яз",
             "color": "#a52a00"
         },
@@ -216,7 +216,7 @@
         {
             "id": "3f49daab-11b8-4e85-8930-d3ee553191f4",
             "position": 13,
-            "name": "Азерб. Язык",
+            "name": "Азербайджанский Язык",
             "shortName": "Аз. яз",
             "color": "#00305e"
         },
