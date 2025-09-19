@@ -14,7 +14,10 @@ export function getPeriodPosition(
   const viewIndex = data.views
     .filter((view) => !view.isDefault)
     .findIndex((view) => view.entityIds.includes(classObj.id));
-  const position = viewIndex > 0 ? period.position - 6 : period.position;
+
+  const isFirstShift = data.views[viewIndex].name.includes("1");
+
+  const position = isFirstShift ? period.position : period.position - 6;
 
   return position;
 }
