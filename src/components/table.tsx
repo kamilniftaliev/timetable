@@ -111,7 +111,7 @@ export default function Table({ originalData }: Props) {
         <Select
           onChange={onTeacherSelect}
           id="teachers"
-          className="w-full max-w-[90vw] text-lg font-medium md:w-xs"
+          className="w-full max-w-sm text-lg font-medium md:w-sm"
         >
           <option value="" className="text-lg font-medium">
             Bütün Müəllimlər
@@ -135,7 +135,7 @@ export default function Table({ originalData }: Props) {
             selectedTeacherCards={data.selectedTeacherCards}
             data={data}
           />
-          <div className="mx-auto flex flex-col gap-8">
+          <div className="flex w-full flex-col gap-8">
             {data.views
               .filter((view) => !view.isDefault)
               .map((view) => {
@@ -174,7 +174,7 @@ export default function Table({ originalData }: Props) {
                     <h2 className="text-center text-3xl font-bold">
                       {view.name}
                     </h2>
-                    <div className="max-w-[calc(100vw-50px)] overflow-auto md:max-w-[calc(100vw-80px)]">
+                    <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)]">
                       <table className="mx-auto border-4 dark:border-white">
                         <tbody>
                           {days.map((day, dayIndex) => {
