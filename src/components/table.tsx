@@ -1,7 +1,7 @@
 "use client";
 
 import type { Timetable } from "@/types";
-import { cn } from "@/utils";
+import { cn, getPeriodPosition } from "@/utils";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { Label, Select } from "flowbite-react";
 import { TeacherTimetable } from "./TeacherTimetable";
@@ -57,11 +57,48 @@ export default function Table({ originalData }: Props) {
             ),
           )
         : originalData.classes;
+    const selectedTeacherCards = selectedTeacherId
+      ? originalData.activities
+          .filter(({ teacherIds }) => teacherIds.includes(selectedTeacherId))
+          .reduce((acc, { subjectId, groupIds, cards }) => {
+            const classObj = originalData.classes.find((cl) =>
+              cl.groupSets.some((group) =>
+                group.groups.some((gr) => groupIds.includes(gr.id)),
+              ),
+            );
+
+            return [
+              ...acc,
+              ...cards.map((card) => ({
+                ...card,
+                subjectId,
+                classObj: classObj,
+              })),
+            ];
+          }, [])
+          .toSorted((a, b) => {
+            const aDay = originalData.days.find((day) => day.id === a.dayId);
+            const bDay = originalData.days.find((day) => day.id === b.dayId);
+
+            if (aDay.position < bDay.position) return -1;
+            if (aDay.position > bDay.position) return 1;
+
+            const aPeriod = originalData.periods.find(
+              (period) => period.id === a.periodId,
+            );
+            const bPeriod = originalData.periods.find(
+              (period) => period.id === b.periodId,
+            );
+
+            return aPeriod.position - bPeriod.position;
+          })
+      : [];
 
     return {
       ...originalData,
       classes: classes,
       activities: activities,
+      selectedTeacherCards,
     };
   }, [selectedTeacherId]);
 
@@ -92,134 +129,187 @@ export default function Table({ originalData }: Props) {
             ))}
         </Select>
       </div>
-      <TeacherTimetable data={data} selectedTeacherId={selectedTeacherId} />
-      <div className="mx-auto flex flex-col gap-8">
-        {data.views
-          .filter((view) => !view.isDefault)
-          .map((view) => {
-            const classes = data.classes.filter((cl) =>
-              view.entityIds?.includes(cl.id),
-            );
-            const periods = data.periods.filter(
-              (period) => !view.excludedPeriodIds?.includes(period.id),
-            );
-            const days = selectedTeacherId
-              ? data.days.filter((day) =>
-                  data.activities.some((activity) =>
-                    activity.cards.some((card) => card.dayId === day.id),
-                  ),
-                )
-              : data.days;
+      {!selectedTeacherId || data.selectedTeacherCards.length > 0 ? (
+        <>
+          <TeacherTimetable
+            selectedTeacherCards={data.selectedTeacherCards}
+            data={data}
+          />
+          <div className="mx-auto flex flex-col gap-8">
+            {data.views
+              .filter((view) => !view.isDefault)
+              .map((view) => {
+                const classes = data.classes.filter((cl) =>
+                  view.entityIds?.includes(cl.id),
+                );
+                const periods = data.periods.filter(
+                  (period) =>
+                    !view.excludedPeriodIds?.includes(period.id) &&
+                    (selectedTeacherId
+                      ? data.activities.some(
+                          (activity) =>
+                            activity.teacherIds.includes(selectedTeacherId) &&
+                            activity.cards.some(
+                              (card) => card.periodId === period.id,
+                            ),
+                        )
+                      : true),
+                );
+                const days = selectedTeacherId
+                  ? data.days.filter((day) =>
+                      data.activities.some((activity) =>
+                        activity.cards.some((card) => card.dayId === day.id),
+                      ),
+                    )
+                  : data.days;
 
-            const tableDataWidth = classes.length * 200 + 150;
+                const tableDataWidth = classes.length * 200 + 150;
+                const dayNameMaxHeight = periods.length * 35;
 
-            return classes.length ? (
-              <div
-                key={view.id}
-                className="mt-8 flex flex-col justify-center gap-6"
-              >
-                <h2 className="text-center text-3xl font-bold">{view.name}</h2>
-                <div className="max-w-[calc(100vw-50px)] overflow-auto md:max-w-[calc(100vw-80px)]">
-                  <table className="mx-auto border-4 dark:border-white">
-                    <tbody>
-                      {days.map((day, dayIndex) => {
-                        return (
-                          <tr key={day.id} className="border-t-3">
-                            <td className={cn("sticky left-0", stickyCell)}>
-                              <span className="vertical-text w-7 text-center font-bold">
-                                {day.name}
-                              </span>
-                            </td>
-                            <td>
-                              <table
-                                className="inner-table"
-                                style={{
-                                  maxWidth: tableDataWidth,
-                                }}
-                              >
-                                {dayIndex === 0 && (
-                                  <thead>
-                                    <tr>
-                                      <th className={numberCell}>
-                                        <div className={numberContainer}>#</div>
-                                      </th>
-                                      {classes.map((cl, classIndex) => (
-                                        <th
-                                          className={getCellClass(classIndex)}
-                                          key={cl.id}
-                                        >
-                                          {cl.name}
-                                        </th>
-                                      ))}
-                                    </tr>
-                                  </thead>
-                                )}
-                                <tbody>
-                                  {periods.map((period, periodIndex) => (
-                                    <tr
-                                      className={cn(
-                                        (periodIndex > 0 || dayIndex === 0) &&
-                                          "border-t",
-                                      )}
-                                      key={period.id}
-                                    >
-                                      <td className={numberCell}>
-                                        <div className={numberContainer}>
-                                          {periodIndex + 1}
-                                        </div>
-                                      </td>
-                                      {classes.map((cl, classIndex) => {
-                                        let subjectName = "";
-
-                                        const activity = data.activities.find(
-                                          (activity) =>
-                                            activity.groupIds.some((groupId) =>
-                                              cl.groupSets.some((group) =>
-                                                group.groups.some(
-                                                  (gr) => gr.id === groupId,
-                                                ),
-                                              ),
-                                            ) &&
-                                            activity.cards.some(
-                                              (card) =>
-                                                card.dayId === day.id &&
-                                                card.periodId === period.id,
-                                            ),
+                return classes.length ? (
+                  <div
+                    key={view.id}
+                    className="mt-8 flex flex-col justify-center gap-6"
+                  >
+                    <h2 className="text-center text-3xl font-bold">
+                      {view.name}
+                    </h2>
+                    <div className="max-w-[calc(100vw-50px)] overflow-auto md:max-w-[calc(100vw-80px)]">
+                      <table className="mx-auto border-4 dark:border-white">
+                        <tbody>
+                          {days.map((day, dayIndex) => {
+                            return (
+                              <tr key={day.id} className="border-t-3">
+                                <td className={cn("sticky left-0", stickyCell)}>
+                                  {dayIndex === 0 && (
+                                    <div className="h-7 w-7" />
+                                  )}
+                                  <span
+                                    className="vertical-text w-7 truncate text-center font-bold text-ellipsis"
+                                    style={{
+                                      maxHeight: dayNameMaxHeight,
+                                    }}
+                                  >
+                                    {periods.length > 3
+                                      ? day.name
+                                      : day.shortName}
+                                  </span>
+                                </td>
+                                <td>
+                                  <table
+                                    className="inner-table"
+                                    style={{
+                                      maxWidth: tableDataWidth,
+                                    }}
+                                  >
+                                    {dayIndex === 0 && (
+                                      <thead>
+                                        <tr>
+                                          <th className={numberCell}>
+                                            <div className={numberContainer}>
+                                              #
+                                            </div>
+                                          </th>
+                                          {classes.map((cl, classIndex) => (
+                                            <th
+                                              className={getCellClass(
+                                                classIndex,
+                                              )}
+                                              key={cl.id}
+                                            >
+                                              {cl.name}
+                                            </th>
+                                          ))}
+                                        </tr>
+                                      </thead>
+                                    )}
+                                    <tbody>
+                                      {periods.map((period, periodIndex) => {
+                                        const position = getPeriodPosition(
+                                          data,
+                                          classes[0],
+                                          period,
                                         );
-
-                                        if (activity) {
-                                          subjectName =
-                                            data.subjects.find(
-                                              (subject) =>
-                                                subject.id ===
-                                                activity.subjectId,
-                                            )?.name || "";
-                                        }
 
                                         return (
-                                          <td
-                                            className={getCellClass(classIndex)}
-                                            key={cl.id + period.id}
+                                          <tr
+                                            className={cn(
+                                              (periodIndex > 0 ||
+                                                dayIndex === 0) &&
+                                                "border-t",
+                                            )}
+                                            key={period.id}
                                           >
-                                            {subjectName}
-                                          </td>
+                                            <td className={numberCell}>
+                                              <div className={numberContainer}>
+                                                {position}
+                                              </div>
+                                            </td>
+                                            {classes.map((cl, classIndex) => {
+                                              let subjectName = "";
+
+                                              const activity =
+                                                data.activities.find(
+                                                  (activity) =>
+                                                    activity.groupIds.some(
+                                                      (groupId) =>
+                                                        cl.groupSets.some(
+                                                          (group) =>
+                                                            group.groups.some(
+                                                              (gr) =>
+                                                                gr.id ===
+                                                                groupId,
+                                                            ),
+                                                        ),
+                                                    ) &&
+                                                    activity.cards.some(
+                                                      (card) =>
+                                                        card.dayId === day.id &&
+                                                        card.periodId ===
+                                                          period.id,
+                                                    ),
+                                                );
+
+                                              if (activity) {
+                                                subjectName =
+                                                  data.subjects.find(
+                                                    (subject) =>
+                                                      subject.id ===
+                                                      activity.subjectId,
+                                                  )?.name || "";
+                                              }
+
+                                              return (
+                                                <td
+                                                  className={getCellClass(
+                                                    classIndex,
+                                                  )}
+                                                  key={cl.id + period.id}
+                                                >
+                                                  {subjectName}
+                                                </td>
+                                              );
+                                            })}
+                                          </tr>
                                         );
                                       })}
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            ) : null;
-          })}
-      </div>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                ) : null;
+              })}
+          </div>
+        </>
+      ) : (
+        <p className="text-xl font-bold">Bu müəllimin dərsi yoxdur</p>
+      )}
     </>
   );
 }

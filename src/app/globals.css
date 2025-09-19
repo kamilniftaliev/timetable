@@ -20,3 +20,7 @@
   table-layout: fixed;
   border-collapse: collapse;
 }
+
+.teacher-timeline-list-item button {
+  border-radius: 0;
+}
