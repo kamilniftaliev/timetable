@@ -1,4 +1,8 @@
-import { DarkThemeToggle, ThemeModeScript } from "flowbite-react";
+import {
+  DarkThemeToggle,
+  ThemeModeScript,
+  ThemeProvider,
+} from "flowbite-react";
 import type { Metadata } from "next";
 import "./globals.css";
 import type { ReactNode } from "react";
@@ -17,9 +21,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <ThemeModeScript />
       </head>
-      <body className={cn("p-8")}>
-        {/* <DarkThemeToggle className="absolute top-4 right-4" /> */}
-        <main className="overflow-auto">{children}</main>
+      <body
+        className={cn(
+          "bg-white p-4 antialiased md:p-8 dark:bg-gray-900 dark:text-white",
+        )}
+      >
+        <ThemeProvider>
+          <DarkThemeToggle className="absolute top-4 right-1 md:right-4" />
+          <main className="overflow-auto">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

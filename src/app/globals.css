@@ -9,3 +9,9 @@
   writing-mode: sideways-lr;
   text-orientation: sideways-right;
 }
+
+.inner-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
