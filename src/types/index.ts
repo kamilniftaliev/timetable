@@ -20,6 +20,15 @@ export type Timetable = {
   readonly cardStyles: CardStyle[];
 };
 
+export type TeacherTimetable = Timetable & {
+  selectedTeacherCards: Array<
+    Card & {
+      classObj: Class;
+      subjectId: Activity["id"];
+    }
+  >;
+};
+
 export type Activity = {
   readonly id: string;
   readonly subjectId: string;

@@ -1,4 +1,4 @@
 export * from "./table";
-export * from "./TeacherTimetable";
+export * from "./TeacherActivityList";
 export * from "./InstallPrompt";
 export * from "./PushNotificationManager";

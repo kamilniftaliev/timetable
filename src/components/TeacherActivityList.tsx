@@ -8,7 +8,7 @@ interface Props {
   selectedTeacherCards?: any[];
 }
 
-export function TeacherTimetable({ data, selectedTeacherCards }: Props) {
+export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
   if (!selectedTeacherCards.length) return null;
 
   const shiftText = getShiftText(data);

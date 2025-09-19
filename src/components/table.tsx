@@ -1,10 +1,18 @@
 "use client";
 
-import type { Timetable } from "@/types";
-import { cn, getPeriodPosition } from "@/utils";
+import type { TeacherTimetable, Timetable } from "@/types";
+import {
+  cn,
+  getCellClass,
+  getDays,
+  getPeriodPosition,
+  getSubjectName,
+  getViewPeriods,
+} from "@/utils";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { Label, Select } from "flowbite-react";
-import { TeacherTimetable } from "./TeacherTimetable";
+import { TeacherActivityList } from "./TeacherActivityList";
+import { TABLE_CLASSES } from "@/constants";
 
 interface Props {
   originalData: Timetable;
@@ -12,20 +20,6 @@ interface Props {
 
 export default function Table({ originalData }: Props) {
   const [selectedTeacherId, setSelectedTeacherId] = useState("");
-
-  const getCellClass = (classIndex: number) => {
-    return cn(
-      `h-8 min-w-38 w-38 max-h-8 min-h-8 py-1 px-2 text-center truncate`,
-      {
-        "border-l": classIndex > 0,
-      },
-    );
-  };
-  const numberCell = "w-8 max-w-8 text-center font-bold sticky left-7";
-  const stickyCell = ` bg-gray-100 dark:bg-gray-800`;
-  const numberContainer =
-    "w-full px-2 border-x-3 border-black dark:border-white leading-8" +
-    stickyCell;
 
   const onTeacherSelect = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
@@ -109,7 +103,7 @@ export default function Table({ originalData }: Props) {
       classes,
       activities,
       selectedTeacherCards,
-    };
+    } as TeacherTimetable;
   }, [selectedTeacherId]);
 
   return (
@@ -126,22 +120,20 @@ export default function Table({ originalData }: Props) {
           <option value="" className="text-lg font-medium">
             Bütün Müəllimlər
           </option>
-          {data.teachers
-            .toSorted((a, b) => a.name.localeCompare(b.name))
-            .map((teacher) => (
-              <option
-                key={teacher.id}
-                value={teacher.id}
-                className="text-lg font-medium"
-              >
-                {teacher.name}
-              </option>
-            ))}
+          {data.teachers.map((teacher) => (
+            <option
+              key={teacher.id}
+              value={teacher.id}
+              className="text-lg font-medium"
+            >
+              {teacher.name}
+            </option>
+          ))}
         </Select>
       </div>
       {!selectedTeacherId || data.selectedTeacherCards.length > 0 ? (
         <>
-          <TeacherTimetable
+          <TeacherActivityList
             selectedTeacherCards={data.selectedTeacherCards}
             data={data}
           />
@@ -150,26 +142,8 @@ export default function Table({ originalData }: Props) {
               const classes = data.classes.filter((cl) =>
                 view.entityIds?.includes(cl.id),
               );
-              const periods = data.periods.filter(
-                (period) =>
-                  !view.excludedPeriodIds?.includes(period.id) &&
-                  (selectedTeacherId
-                    ? data.activities.some(
-                        (activity) =>
-                          activity.teacherIds.includes(selectedTeacherId) &&
-                          activity.cards.some(
-                            (card) => card.periodId === period.id,
-                          ),
-                      )
-                    : true),
-              );
-              const days = selectedTeacherId
-                ? data.days.filter((day) =>
-                    data.activities.some((activity) =>
-                      activity.cards.some((card) => card.dayId === day.id),
-                    ),
-                  )
-                : data.days;
+              const periods = getViewPeriods(data, view, selectedTeacherId);
+              const days = getDays(data, selectedTeacherId);
 
               const tableDataWidth = classes.length * 200 + 150;
               const dayNameMaxHeight = periods.length * 35;
@@ -186,9 +160,14 @@ export default function Table({ originalData }: Props) {
                     <table className="mx-auto border-4 dark:border-white">
                       <tbody>
                         {days.map((day, dayIndex) => {
-                          return (
+                          return periods.length ? (
                             <tr key={day.id} className="border-t-3">
-                              <td className={cn("sticky left-0", stickyCell)}>
+                              <td
+                                className={cn(
+                                  "sticky left-0",
+                                  TABLE_CLASSES.stickyCell,
+                                )}
+                              >
                                 <span
                                   className="vertical-text -mb-1 w-7 truncate text-center font-bold text-ellipsis"
                                   style={{
@@ -210,8 +189,14 @@ export default function Table({ originalData }: Props) {
                                   {dayIndex === 0 && (
                                     <thead>
                                       <tr>
-                                        <th className={numberCell}>
-                                          <div className={numberContainer}>
+                                        <th
+                                          className={TABLE_CLASSES.numberCell}
+                                        >
+                                          <div
+                                            className={
+                                              TABLE_CLASSES.numberContainer
+                                            }
+                                          >
                                             #
                                           </div>
                                         </th>
@@ -243,43 +228,24 @@ export default function Table({ originalData }: Props) {
                                           )}
                                           key={period.id}
                                         >
-                                          <td className={numberCell}>
-                                            <div className={numberContainer}>
+                                          <td
+                                            className={TABLE_CLASSES.numberCell}
+                                          >
+                                            <div
+                                              className={
+                                                TABLE_CLASSES.numberContainer
+                                              }
+                                            >
                                               {position}
                                             </div>
                                           </td>
                                           {classes.map((cl, classIndex) => {
-                                            let subjectName = "";
-
-                                            const activity =
-                                              data.activities.find(
-                                                (activity) =>
-                                                  activity.groupIds.some(
-                                                    (groupId) =>
-                                                      cl.groupSets.some(
-                                                        (group) =>
-                                                          group.groups.some(
-                                                            (gr) =>
-                                                              gr.id === groupId,
-                                                          ),
-                                                      ),
-                                                  ) &&
-                                                  activity.cards.some(
-                                                    (card) =>
-                                                      card.dayId === day.id &&
-                                                      card.periodId ===
-                                                        period.id,
-                                                  ),
-                                              );
-
-                                            if (activity) {
-                                              subjectName =
-                                                data.subjects.find(
-                                                  (subject) =>
-                                                    subject.id ===
-                                                    activity.subjectId,
-                                                )?.name || "";
-                                            }
+                                            const subjectName = getSubjectName(
+                                              data,
+                                              cl,
+                                              day,
+                                              period,
+                                            );
 
                                             return (
                                               <td
@@ -299,7 +265,7 @@ export default function Table({ originalData }: Props) {
                                 </table>
                               </td>
                             </tr>
-                          );
+                          ) : null;
                         })}
                       </tbody>
                     </table>

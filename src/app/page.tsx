@@ -4,7 +4,14 @@ import Table from "@/components/table";
 // import { InstallPrompt, PushNotificationManager } from "@/components";
 import { TITLE } from "@/constants";
 
-const originalData = timelineData as any as Timetable;
+let originalData = timelineData as any as Timetable;
+
+originalData = {
+  ...originalData,
+  teachers: originalData.teachers.toSorted((a, b) =>
+    a.name.localeCompare(b.name),
+  ),
+};
 
 export default function Home() {
   return (
