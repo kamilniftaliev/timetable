@@ -93,11 +93,21 @@ export default function Table({ originalData }: Props) {
             return aPeriod.position - bPeriod.position;
           })
       : [];
+    let views = originalData.views.filter((view) => !view.isDefault);
+
+    views = selectedTeacherId
+      ? views.filter((view) =>
+          view.entityIds?.some((classId) =>
+            classes.some((cl) => cl.id === classId),
+          ),
+        )
+      : views;
 
     return {
       ...originalData,
-      classes: classes,
-      activities: activities,
+      views,
+      classes,
+      activities,
       selectedTeacherCards,
     };
   }, [selectedTeacherId]);
@@ -136,175 +146,168 @@ export default function Table({ originalData }: Props) {
             data={data}
           />
           <div className="flex w-full flex-col gap-8">
-            {data.views
-              .filter((view) => !view.isDefault)
-              .map((view) => {
-                const classes = data.classes.filter((cl) =>
-                  view.entityIds?.includes(cl.id),
-                );
-                const periods = data.periods.filter(
-                  (period) =>
-                    !view.excludedPeriodIds?.includes(period.id) &&
-                    (selectedTeacherId
-                      ? data.activities.some(
-                          (activity) =>
-                            activity.teacherIds.includes(selectedTeacherId) &&
-                            activity.cards.some(
-                              (card) => card.periodId === period.id,
-                            ),
-                        )
-                      : true),
-                );
-                const days = selectedTeacherId
-                  ? data.days.filter((day) =>
-                      data.activities.some((activity) =>
-                        activity.cards.some((card) => card.dayId === day.id),
-                      ),
-                    )
-                  : data.days;
+            {data.views.map((view) => {
+              const classes = data.classes.filter((cl) =>
+                view.entityIds?.includes(cl.id),
+              );
+              const periods = data.periods.filter(
+                (period) =>
+                  !view.excludedPeriodIds?.includes(period.id) &&
+                  (selectedTeacherId
+                    ? data.activities.some(
+                        (activity) =>
+                          activity.teacherIds.includes(selectedTeacherId) &&
+                          activity.cards.some(
+                            (card) => card.periodId === period.id,
+                          ),
+                      )
+                    : true),
+              );
+              const days = selectedTeacherId
+                ? data.days.filter((day) =>
+                    data.activities.some((activity) =>
+                      activity.cards.some((card) => card.dayId === day.id),
+                    ),
+                  )
+                : data.days;
 
-                const tableDataWidth = classes.length * 200 + 150;
-                const dayNameMaxHeight = periods.length * 35;
+              const tableDataWidth = classes.length * 200 + 150;
+              const dayNameMaxHeight = periods.length * 35;
 
-                return classes.length ? (
-                  <div
-                    key={view.id}
-                    className="mt-8 flex flex-col justify-center gap-6"
-                  >
-                    <h2 className="text-center text-3xl font-bold">
-                      {view.name}
-                    </h2>
-                    <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)]">
-                      <table className="mx-auto border-4 dark:border-white">
-                        <tbody>
-                          {days.map((day, dayIndex) => {
-                            return (
-                              <tr key={day.id} className="border-t-3">
-                                <td className={cn("sticky left-0", stickyCell)}>
+              return classes.length ? (
+                <div
+                  key={view.id}
+                  className="mt-8 flex flex-col justify-center gap-6"
+                >
+                  <h2 className="text-center text-3xl font-bold">
+                    {view.name}
+                  </h2>
+                  <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)]">
+                    <table className="mx-auto border-4 dark:border-white">
+                      <tbody>
+                        {days.map((day, dayIndex) => {
+                          return (
+                            <tr key={day.id} className="border-t-3">
+                              <td className={cn("sticky left-0", stickyCell)}>
+                                {dayIndex === 0 && <div className="h-7 w-7" />}
+                                <span
+                                  className="vertical-text w-7 truncate text-center font-bold text-ellipsis"
+                                  style={{
+                                    maxHeight: dayNameMaxHeight,
+                                  }}
+                                >
+                                  {periods.length > 3
+                                    ? day.name
+                                    : day.shortName}
+                                </span>
+                              </td>
+                              <td>
+                                <table
+                                  className="inner-table"
+                                  style={{
+                                    maxWidth: tableDataWidth,
+                                  }}
+                                >
                                   {dayIndex === 0 && (
-                                    <div className="h-7 w-7" />
-                                  )}
-                                  <span
-                                    className="vertical-text w-7 truncate text-center font-bold text-ellipsis"
-                                    style={{
-                                      maxHeight: dayNameMaxHeight,
-                                    }}
-                                  >
-                                    {periods.length > 3
-                                      ? day.name
-                                      : day.shortName}
-                                  </span>
-                                </td>
-                                <td>
-                                  <table
-                                    className="inner-table"
-                                    style={{
-                                      maxWidth: tableDataWidth,
-                                    }}
-                                  >
-                                    {dayIndex === 0 && (
-                                      <thead>
-                                        <tr>
-                                          <th className={numberCell}>
-                                            <div className={numberContainer}>
-                                              #
-                                            </div>
-                                          </th>
-                                          {classes.map((cl, classIndex) => (
-                                            <th
-                                              className={getCellClass(
-                                                classIndex,
-                                              )}
-                                              key={cl.id}
-                                            >
-                                              {cl.name}
-                                            </th>
-                                          ))}
-                                        </tr>
-                                      </thead>
-                                    )}
-                                    <tbody>
-                                      {periods.map((period, periodIndex) => {
-                                        const position = getPeriodPosition(
-                                          data,
-                                          classes[0],
-                                          period,
-                                        );
-
-                                        return (
-                                          <tr
-                                            className={cn(
-                                              (periodIndex > 0 ||
-                                                dayIndex === 0) &&
-                                                "border-t",
-                                            )}
-                                            key={period.id}
+                                    <thead>
+                                      <tr>
+                                        <th className={numberCell}>
+                                          <div className={numberContainer}>
+                                            #
+                                          </div>
+                                        </th>
+                                        {classes.map((cl, classIndex) => (
+                                          <th
+                                            className={getCellClass(classIndex)}
+                                            key={cl.id}
                                           >
-                                            <td className={numberCell}>
-                                              <div className={numberContainer}>
-                                                {position}
-                                              </div>
-                                            </td>
-                                            {classes.map((cl, classIndex) => {
-                                              let subjectName = "";
+                                            {cl.name}
+                                          </th>
+                                        ))}
+                                      </tr>
+                                    </thead>
+                                  )}
+                                  <tbody>
+                                    {periods.map((period, periodIndex) => {
+                                      const position = getPeriodPosition(
+                                        data,
+                                        classes[0],
+                                        period,
+                                      );
 
-                                              const activity =
-                                                data.activities.find(
-                                                  (activity) =>
-                                                    activity.groupIds.some(
-                                                      (groupId) =>
-                                                        cl.groupSets.some(
-                                                          (group) =>
-                                                            group.groups.some(
-                                                              (gr) =>
-                                                                gr.id ===
-                                                                groupId,
-                                                            ),
-                                                        ),
-                                                    ) &&
-                                                    activity.cards.some(
-                                                      (card) =>
-                                                        card.dayId === day.id &&
-                                                        card.periodId ===
-                                                          period.id,
-                                                    ),
-                                                );
+                                      return (
+                                        <tr
+                                          className={cn(
+                                            (periodIndex > 0 ||
+                                              dayIndex === 0) &&
+                                              "border-t",
+                                          )}
+                                          key={period.id}
+                                        >
+                                          <td className={numberCell}>
+                                            <div className={numberContainer}>
+                                              {position}
+                                            </div>
+                                          </td>
+                                          {classes.map((cl, classIndex) => {
+                                            let subjectName = "";
 
-                                              if (activity) {
-                                                subjectName =
-                                                  data.subjects.find(
-                                                    (subject) =>
-                                                      subject.id ===
-                                                      activity.subjectId,
-                                                  )?.name || "";
-                                              }
-
-                                              return (
-                                                <td
-                                                  className={getCellClass(
-                                                    classIndex,
-                                                  )}
-                                                  key={cl.id + period.id}
-                                                >
-                                                  {subjectName}
-                                                </td>
+                                            const activity =
+                                              data.activities.find(
+                                                (activity) =>
+                                                  activity.groupIds.some(
+                                                    (groupId) =>
+                                                      cl.groupSets.some(
+                                                        (group) =>
+                                                          group.groups.some(
+                                                            (gr) =>
+                                                              gr.id === groupId,
+                                                          ),
+                                                      ),
+                                                  ) &&
+                                                  activity.cards.some(
+                                                    (card) =>
+                                                      card.dayId === day.id &&
+                                                      card.periodId ===
+                                                        period.id,
+                                                  ),
                                               );
-                                            })}
-                                          </tr>
-                                        );
-                                      })}
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                    </div>
+
+                                            if (activity) {
+                                              subjectName =
+                                                data.subjects.find(
+                                                  (subject) =>
+                                                    subject.id ===
+                                                    activity.subjectId,
+                                                )?.name || "";
+                                            }
+
+                                            return (
+                                              <td
+                                                className={getCellClass(
+                                                  classIndex,
+                                                )}
+                                                key={cl.id + period.id}
+                                              >
+                                                {subjectName}
+                                              </td>
+                                            );
+                                          })}
+                                        </tr>
+                                      );
+                                    })}
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
                   </div>
-                ) : null;
-              })}
+                </div>
+              ) : null;
+            })}
           </div>
         </>
       ) : (

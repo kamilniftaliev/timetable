@@ -1,6 +1,6 @@
 import { POSITION_SUFFIX } from "@/constants";
-import { Teacher, Timetable } from "@/types";
-import { cn, getPeriodPosition } from "@/utils";
+import { Timetable } from "@/types";
+import { cn, getPeriodPosition, getShiftText } from "@/utils";
 import { ListGroup, ListGroupItem } from "flowbite-react";
 
 interface Props {
@@ -11,10 +11,12 @@ interface Props {
 export function TeacherTimetable({ data, selectedTeacherCards }: Props) {
   if (!selectedTeacherCards.length) return null;
 
+  const shiftText = getShiftText(data);
+
   return (
     <div className="w-full max-w-sm md:w-2/3">
       <p className="text-center text-xl font-bold">
-        Toplam {selectedTeacherCards.length} dərs
+        {shiftText} toplam {selectedTeacherCards.length} dərs
       </p>
       <ListGroup className="mt-4 w-full border-2 border-gray-400 text-lg dark:border-gray-400">
         {selectedTeacherCards.map(
@@ -29,6 +31,9 @@ export function TeacherTimetable({ data, selectedTeacherCards }: Props) {
             const position = getPeriodPosition(data, classObj, period);
             const isPrevDifferentDay =
               arr[i - 1] && arr[i].dayId !== arr[i - 1].dayId;
+            const classShiftIndex = data.views.findIndex((view) =>
+              view.entityIds.includes(classObj.id),
+            );
 
             return (
               <ListGroupItem
@@ -43,6 +48,9 @@ export function TeacherTimetable({ data, selectedTeacherCards }: Props) {
               >
                 <div className="flex w-full gap-1.5 truncate">
                   <span>{day.shortName}</span>
+                  {data.views.length === 2 && (
+                    <span>{classShiftIndex + 1}-ая см.</span>
+                  )}
                   <span>
                     {position}-{POSITION_SUFFIX[position]} урок
                   </span>
