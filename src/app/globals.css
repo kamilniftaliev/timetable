@@ -23,4 +23,20 @@
 
 .teacher-timeline-list-item button {
   border-radius: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.teacher-timeline-list-item button:hover {
+  background-color: transparent;
+}
+
+.teacher-timeline-list-item button:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.teachers-select-container select:focus {
+  outline: 0;
+  box-shadow: none;
 }

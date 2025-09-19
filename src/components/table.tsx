@@ -115,7 +115,7 @@ export default function Table({ originalData }: Props) {
         <Select
           onChange={onTeacherSelect}
           id="teachers"
-          className="w-full max-w-sm text-lg font-medium md:w-sm"
+          className="teachers-select-container w-full max-w-sm text-lg font-medium md:w-sm"
         >
           <option value="" className="text-lg font-medium">
             Bütün Müəllimlər
