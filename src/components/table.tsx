@@ -190,7 +190,7 @@ export default function Table({ originalData }: Props) {
                             <tr key={day.id} className="border-t-3">
                               <td className={cn("sticky left-0", stickyCell)}>
                                 <span
-                                  className="vertical-text w-7 truncate text-center font-bold text-ellipsis"
+                                  className="vertical-text -mb-1 w-7 truncate text-center font-bold text-ellipsis"
                                   style={{
                                     maxHeight: dayNameMaxHeight,
                                   }}
