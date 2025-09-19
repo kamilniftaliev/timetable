@@ -189,14 +189,13 @@ export default function Table({ originalData }: Props) {
                           return (
                             <tr key={day.id} className="border-t-3">
                               <td className={cn("sticky left-0", stickyCell)}>
-                                {dayIndex === 0 && <div className="h-7 w-7" />}
                                 <span
                                   className="vertical-text w-7 truncate text-center font-bold text-ellipsis"
                                   style={{
                                     maxHeight: dayNameMaxHeight,
                                   }}
                                 >
-                                  {periods.length > 3
+                                  {periods.length > 2
                                     ? day.name
                                     : day.shortName}
                                 </span>
