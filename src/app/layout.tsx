@@ -5,21 +5,23 @@ import {
 } from "flowbite-react";
 import type { Metadata } from "next";
 import "./globals.css";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { cn } from "@/utils";
+import { TITLE } from "@/constants";
 
 export const metadata: Metadata = {
-  title:
-    "Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü lisey",
-  description:
-    "Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü lisey",
+  title: TITLE,
+  description: TITLE,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="az-Latn" suppressHydrationWarning>
       <head>
         <ThemeModeScript />
+        <link rel="icon" type="image/png" href="/icon-192.png" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        {/* <link rel="manifest" href="/manifest.json" /> */}
       </head>
       <body
         className={cn(
