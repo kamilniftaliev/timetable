@@ -11,11 +11,12 @@ export function getPeriodPosition(
   classObj: Class,
   period: Period,
 ) {
-  const viewIndex = data.views
-    .filter((view) => !view.isDefault)
-    .findIndex((view) => view.entityIds.includes(classObj.id));
+  const view =
+    data.views.length === 1
+      ? data.views[0]
+      : data.views.find((view) => view.entityIds.includes(classObj.id));
 
-  const isFirstShift = data.views[viewIndex].name.includes("1");
+  const isFirstShift = view.name.includes("1");
 
   const position = isFirstShift ? period.position : period.position - 6;
 

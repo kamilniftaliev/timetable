@@ -31,9 +31,12 @@ export function TeacherTimetable({ data, selectedTeacherCards }: Props) {
             const position = getPeriodPosition(data, classObj, period);
             const isPrevDifferentDay =
               arr[i - 1] && arr[i].dayId !== arr[i - 1].dayId;
-            const classShiftIndex = data.views.findIndex((view) =>
-              view.entityIds.includes(classObj.id),
-            );
+            const have2Shifts = data.views.length === 2;
+            const classShiftIndex = have2Shifts
+              ? data.views.findIndex((view) =>
+                  view.entityIds.includes(classObj.id),
+                )
+              : 0;
 
             return (
               <ListGroupItem
@@ -48,9 +51,7 @@ export function TeacherTimetable({ data, selectedTeacherCards }: Props) {
               >
                 <div className="flex w-full gap-1.5 truncate">
                   <span>{day.shortName}</span>
-                  {data.views.length === 2 && (
-                    <span>{classShiftIndex + 1}-ая см.</span>
-                  )}
+                  {have2Shifts && <span>{classShiftIndex + 1}-ая см.</span>}
                   <span>
                     {position}-{POSITION_SUFFIX[position]} урок
                   </span>
