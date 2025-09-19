@@ -3,7 +3,7 @@
     "name": "cedvel",
     "published": true,
     "createdAt": "2025-09-13T17:39:18.029Z",
-    "updatedAt": "2025-09-18T22:39:04.726Z",
+    "updatedAt": "2025-09-19T11:43:53.720Z",
     "schoolId": "b9554c68-b209-4af5-a210-0e325d628656",
     "schoolName": "cedvel",
     "year": "2025",
@@ -16343,7 +16343,7 @@
         {
             "id": "2f0de1a9-a340-4452-a202-e58c311f21c5",
             "position": 5,
-            "name": "1 növbə",
+            "name": "1-ci növbə",
             "shortName": "1n",
             "entityIds": [
                 "ee69364b-9bff-48dc-935b-ea888d53af75",
@@ -16375,7 +16375,7 @@
         {
             "id": "1c269bdd-b2ac-49f1-972b-80fc04d3fcd7",
             "position": 6,
-            "name": "2 növbə",
+            "name": "2-ci növbə",
             "shortName": "2n",
             "entityIds": [
                 "1d54d8d5-cb32-4a05-9537-37880daf4499",
