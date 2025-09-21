@@ -18,6 +18,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="az" suppressHydrationWarning>
       <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-5LN9DBMH51"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-5LN9DBMH51');
+            `,
+          }}
+        />
         <ThemeModeScript />
         <link rel="icon" type="image/png" href="/icon-192.png" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />

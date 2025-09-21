@@ -118,7 +118,7 @@ export default function Table({ originalData }: Props) {
           className="teachers-select-container w-full max-w-sm text-lg font-medium md:w-sm"
         >
           <option value="" className="text-lg font-medium">
-            Bütün Müəllimlər
+            Bütün Müəllimlər ({data.teachers.length})
           </option>
           {data.teachers.map((teacher) => (
             <option
