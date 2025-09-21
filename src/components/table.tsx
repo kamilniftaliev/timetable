@@ -24,8 +24,9 @@ export default function Table({ originalData }: Props) {
   const searchParams = useSearchParams();
   const teacherName = searchParams.get("teacher");
   const originalTeacherId =
-    teacherName &&
-    originalData.teachers.find(({ name }) => name === teacherName)?.id;
+    (teacherName &&
+      originalData.teachers.find(({ name }) => name === teacherName)?.id) ||
+    "";
   const [selectedTeacherId, setSelectedTeacherId] = useState(originalTeacherId);
 
   const onTeacherSelect = useCallback(

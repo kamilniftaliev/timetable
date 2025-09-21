@@ -3,6 +3,7 @@ import timelineData from "../../public/cedvel.json";
 import Table from "@/components/table";
 // import { InstallPrompt, PushNotificationManager } from "@/components";
 import { TITLE } from "@/constants";
+import { Suspense } from "react";
 
 let originalData = timelineData as any as Timetable;
 
@@ -23,7 +24,9 @@ export default function Home() {
           {TITLE} (22 Sentyabr 2025)
         </h1>
 
-        <Table originalData={originalData} />
+        <Suspense fallback={<h1>Yüklənir...</h1>}>
+          <Table originalData={originalData} />
+        </Suspense>
       </main>
     </>
   );
