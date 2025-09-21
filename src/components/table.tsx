@@ -31,7 +31,8 @@ export default function Table({ originalData }: Props) {
 
   useEffect(() => {
     setTimeout(() => {
-      document.title = selectedTeacherId ? `${teacherName} cədvəli` : TITLE;
+      document.title =
+        selectedTeacherId && teacherName ? `${teacherName} cədvəli` : TITLE;
     }, 0);
   }, [selectedTeacherId, teacherName]);
 
