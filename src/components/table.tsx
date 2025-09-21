@@ -9,10 +9,10 @@ import {
   getSubjectName,
   getViewPeriods,
 } from "@/utils";
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { Label, Select } from "flowbite-react";
 import { TeacherActivityList } from "./TeacherActivityList";
-import { TABLE_CLASSES } from "@/constants";
+import { TABLE_CLASSES, TITLE } from "@/constants";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
@@ -28,6 +28,12 @@ export default function Table({ originalData }: Props) {
       originalData.teachers.find(({ name }) => name === teacherName)?.id) ||
     "";
   const [selectedTeacherId, setSelectedTeacherId] = useState(originalTeacherId);
+
+  useEffect(() => {
+    setTimeout(() => {
+      document.title = selectedTeacherId ? `${teacherName} cədvəli` : TITLE;
+    }, 0);
+  }, [selectedTeacherId, teacherName]);
 
   const onTeacherSelect = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
