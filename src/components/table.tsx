@@ -13,19 +13,39 @@ import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { Label, Select } from "flowbite-react";
 import { TeacherActivityList } from "./TeacherActivityList";
 import { TABLE_CLASSES } from "@/constants";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   originalData: Timetable;
 }
 
 export default function Table({ originalData }: Props) {
-  const [selectedTeacherId, setSelectedTeacherId] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const teacherName = searchParams.get("teacher");
+  const originalTeacherId =
+    teacherName &&
+    originalData.teachers.find(({ name }) => name === teacherName)?.id;
+  const [selectedTeacherId, setSelectedTeacherId] = useState(originalTeacherId);
 
   const onTeacherSelect = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
       const teacherId = event.target.value;
 
+      const teacherName =
+        teacherId &&
+        originalData.teachers.find(({ id }) => id === teacherId)?.name;
+
       setSelectedTeacherId(teacherId);
+
+      if (teacherName) {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("teacher", teacherName);
+
+        router.push(`?${params.toString()}`);
+      } else {
+        router.push("/");
+      }
     },
     [],
   );
@@ -116,6 +136,7 @@ export default function Table({ originalData }: Props) {
           onChange={onTeacherSelect}
           id="teachers"
           className="teachers-select-container w-full max-w-sm text-lg font-medium md:w-sm"
+          value={selectedTeacherId}
         >
           <option value="" className="text-lg font-medium">
             Bütün Müəllimlər ({data.teachers.length})

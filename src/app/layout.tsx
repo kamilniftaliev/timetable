@@ -36,7 +36,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeModeScript />
         <link rel="icon" type="image/png" href="/icon-192.png" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        {/* <link rel="manifest" href="/manifest.json" /> */}
       </head>
       <body
         className={cn(
