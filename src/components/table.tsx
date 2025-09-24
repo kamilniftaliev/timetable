@@ -201,10 +201,12 @@ export default function Table({ originalData }: Props) {
 
       if (navigator.share) {
         let schoolPrefix = teacherName || className ? "" : "Məktəb";
+
         const text =
-          `${schoolPrefix} ${teacherName || ""} ${className ? `${className} sinfi üzrə` : ""} cədvəli:`
+          `${schoolPrefix} ${teacherName || ""} ${className ? `${className} sinfinin` : ""} cədvəli:`
             .replaceAll(/\s+/g, " ")
             .trim();
+
         await navigator.share({
           title: text,
           url,
