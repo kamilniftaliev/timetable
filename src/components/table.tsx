@@ -43,15 +43,6 @@ export default function Table({ originalData }: Props) {
   const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      document.title =
-        selectedTeacherId && teacherName
-          ? `${teacherName} cədvəli`
-          : getTitle();
-    }, 0);
-  }, [selectedTeacherId, teacherName]);
-
-  useEffect(() => {
     if (!linkCopied) return;
 
     const timeout = setTimeout(() => setLinkCopied(false), 5000);
@@ -206,6 +197,8 @@ export default function Table({ originalData }: Props) {
           `${schoolPrefix} ${teacherName || ""} ${className ? `${className} sinfinin` : ""} cədvəli:`
             .replaceAll(/\s+/g, " ")
             .trim();
+
+        // document.title = text;
 
         await navigator.share({
           title: text,

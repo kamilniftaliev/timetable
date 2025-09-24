@@ -4,6 +4,8 @@ import Table from "@/components/table";
 // import { InstallPrompt, PushNotificationManager } from "@/components";
 import { Suspense } from "react";
 import { Title } from "@/components";
+import { getTitle } from "@/utils";
+import { PAGE_DESCRIPTION } from "@/constants";
 
 let originalData = timelineData as any as Timetable;
 
@@ -13,6 +15,26 @@ originalData = {
     a.name.localeCompare(b.name),
   ),
 };
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>;
+}) {
+  const { teacher, class: className } = await searchParams;
+
+  const title = getTitle({
+    className,
+    teacher,
+  });
+
+  console.log("title", title);
+
+  return {
+    title: title,
+    description: PAGE_DESCRIPTION,
+  };
+}
 
 export default function Home() {
   return (

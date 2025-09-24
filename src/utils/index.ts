@@ -122,9 +122,22 @@ export function getDays(data: Timetable, selectedTeacherId: Teacher["id"]) {
     : data.days;
 }
 
-export function getTitle(shiftNumber = 0) {
-  return `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi ${shiftNumber ? `${shiftNumber}-ci növbə` : ""} üzrə cədvəli`.replaceAll(
-    /\s+/g,
-    " ",
-  );
+export function getTitle({
+  shiftNumber = 0,
+  teacher,
+  className,
+}: {
+  shiftNumber?: number;
+  teacher?: string;
+  className?: string;
+} = {}) {
+  let title = `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi ${shiftNumber ? `${shiftNumber}-ci növbə` : ""} üzrə cədvəli`;
+
+  if (teacher) {
+    title = `Müəllim ${teacher} üçün ${className ? `${className} sinfi üzrə ` : ""} cədvəl`;
+  } else if (className) {
+    title = `${className} sinfi üzrə cədvəl`;
+  }
+
+  return title.replaceAll(/\s+/g, " ");
 }

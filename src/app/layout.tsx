@@ -3,15 +3,9 @@ import {
   ThemeModeScript,
   ThemeProvider,
 } from "flowbite-react";
-import type { Metadata } from "next";
 import "./globals.css";
-import { type ReactNode } from "react";
-import { cn, getTitle } from "@/utils";
-
-export const metadata: Metadata = {
-  title: getTitle(),
-  description: getTitle(),
-};
+import type { ReactNode } from "react";
+import { cn } from "@/utils";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

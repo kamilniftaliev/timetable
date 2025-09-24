@@ -22,3 +22,5 @@ export const TABLE_CLASSES = {
 };
 
 export const ICON_SIZE_CLASSES = "w-5 h-5";
+
+export const PAGE_DESCRIPTION = `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi üzrə cədvəli`;
