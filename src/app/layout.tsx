@@ -7,6 +7,19 @@ import "./globals.css";
 import type { ReactNode } from "react";
 import { cn } from "@/utils";
 
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#111827" },
+  ],
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="az" suppressHydrationWarning>
@@ -27,7 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         <ThemeModeScript />
-        <link rel="icon" type="image/png" href="/icon-192.png" />
+        <link rel="icon" type="image/jpeg" href="/horizontal-image.jpg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
       <body

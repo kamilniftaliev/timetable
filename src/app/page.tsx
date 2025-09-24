@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { Title } from "@/components";
 import { getTitle } from "@/utils";
 import { PAGE_DESCRIPTION } from "@/constants";
+import { Spinner } from "flowbite-react";
 
 let originalData = timelineData as any as Timetable;
 
@@ -28,8 +29,6 @@ export async function generateMetadata({
     teacher,
   });
 
-  console.log("title", title);
-
   return {
     title: title,
     description: PAGE_DESCRIPTION,
@@ -44,7 +43,9 @@ export default function Home() {
       <main className="flex flex-col items-center gap-4 print:gap-0">
         <Title className="print:hidden" />
 
-        <Suspense fallback={<h1>Yüklənir...</h1>}>
+        <Suspense
+          fallback={<Spinner aria-label="Cədvəl Yüklənir..." size="xl" />}
+        >
           <Table originalData={originalData} />
         </Suspense>
       </main>
