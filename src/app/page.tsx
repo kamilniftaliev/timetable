@@ -40,11 +40,18 @@ export default function Home() {
     <>
       {/* <PushNotificationManager /> */}
       {/* <InstallPrompt /> */}
-      <main className="flex flex-col items-center gap-4 print:gap-0">
+      <main className="flex h-full flex-col items-center gap-4 print:gap-0">
         <Title className="print:hidden" />
 
         <Suspense
-          fallback={<Spinner aria-label="Cədvəl Yüklənir..." size="xl" />}
+          fallback={
+            <Spinner
+              className="my-20"
+              aria-label="Cədvəl Yüklənir..."
+              color="gray"
+              size="xl"
+            />
+          }
         >
           <Table originalData={originalData} />
         </Suspense>

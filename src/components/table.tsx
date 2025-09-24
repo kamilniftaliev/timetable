@@ -191,14 +191,7 @@ export default function Table({ originalData }: Props) {
       const url = window.location.href;
 
       if (navigator.share) {
-        let schoolPrefix = teacherName || className ? "" : "Məktəb";
-
-        const text =
-          `${schoolPrefix} ${teacherName || ""} ${className ? `${className} sinfinin` : ""} cədvəli:`
-            .replaceAll(/\s+/g, " ")
-            .trim();
-
-        // document.title = text;
+        const text = getTitle({ teacher: teacherName, className });
 
         await navigator.share({
           title: text,
