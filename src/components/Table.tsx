@@ -1,56 +1,44 @@
 "use client";
 
-import type { TeacherTimetable, Timetable } from "@/types";
+import type { TeacherTimetable } from "@/types";
 import {
   cn,
   getCellClass,
   getDays,
   getPeriodPosition,
   getSubject,
-  getTitle,
   getViewPeriods,
 } from "@/utils";
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { Button, Label, Select } from "flowbite-react";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { TeacherActivityList } from "./TeacherActivityList";
-import { ICON_SIZE_CLASSES, TABLE_CLASSES } from "@/constants";
+import {
+  timetable,
+  SELECTOR_CLASS_OPTIONS,
+  SELECTOR_TEACHER_OPTIONS,
+  TABLE_CLASSES,
+} from "@/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Title } from "./Title";
-import { MdOutlineIosShare } from "react-icons/md";
-import { FaLink, FaCheck } from "react-icons/fa6";
+import { Selector } from "./Selector";
+import { ShareButton } from "./ShareButton";
 
-interface Props {
-  originalData: Timetable;
-}
-
-export default function Table({ originalData }: Props) {
+export default function Table() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const teacherName = searchParams.get("teacher");
   const originalTeacherId =
     (teacherName &&
-      originalData.teachers.find(({ name }) => name === teacherName)?.id) ||
+      timetable.teachers.find(({ name }) => name === teacherName)?.id) ||
     "";
   const [selectedTeacherId, setSelectedTeacherId] = useState(originalTeacherId);
 
   const className = searchParams.get("class");
   const originalClassId =
     (className &&
-      originalData.classes.find(({ name }) => name === className)?.id) ||
+      timetable.classes.find(({ name }) => name === className)?.id) ||
     "";
   const [selectedClassId, setSelectedClassId] = useState(originalClassId);
-  const [linkCopied, setLinkCopied] = useState(false);
-
-  useEffect(() => {
-    if (!linkCopied) return;
-
-    const timeout = setTimeout(() => setLinkCopied(false), 5000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [linkCopied]);
 
   const toggleParams = useCallback(
     (name: string, value?: string) => {
@@ -70,7 +58,7 @@ export default function Table({ originalData }: Props) {
 
       const teacherName =
         teacherId &&
-        originalData.teachers.find(({ id }) => id === teacherId)?.name;
+        timetable.teachers.find(({ id }) => id === teacherId)?.name;
 
       setSelectedTeacherId(teacherId);
       toggleParams("teacher", teacherName);
@@ -83,7 +71,7 @@ export default function Table({ originalData }: Props) {
       const classId = event.target.value;
 
       const className =
-        classId && originalData.classes.find(({ id }) => id === classId)?.name;
+        classId && timetable.classes.find(({ id }) => id === classId)?.name;
 
       setSelectedClassId(classId);
       toggleParams("class", className);
@@ -93,15 +81,15 @@ export default function Table({ originalData }: Props) {
 
   const data = useMemo(() => {
     let activities = selectedTeacherId
-      ? originalData.activities.filter((activity) =>
+      ? timetable.activities.filter((activity) =>
           activity.teacherIds.includes(selectedTeacherId),
         )
-      : originalData.activities;
+      : timetable.activities;
 
     if (selectedClassId) {
       activities = activities.filter((activity) =>
         activity.groupIds.some((groupId) =>
-          originalData.classes
+          timetable.classes
             .find((cl) => cl.id === selectedClassId)
             ?.groupSets.some(({ groups }) =>
               groups.some((group) => group.id === groupId),
@@ -118,19 +106,19 @@ export default function Table({ originalData }: Props) {
       : null;
     let classes =
       selectedTeacherId && selectedTeacherGroupIds
-        ? originalData.classes.filter((classObj) =>
+        ? timetable.classes.filter((classObj) =>
             classObj.groupSets.some(({ groups }) =>
               groups.some(({ id }) => selectedTeacherGroupIds.includes(id)),
             ),
           )
-        : originalData.classes;
+        : timetable.classes;
 
     if (selectedClassId) {
       classes = classes.filter((cl) => cl.id === selectedClassId);
     }
 
     const selectedTeacherCards = selectedTeacherId
-      ? originalData.activities
+      ? timetable.activities
           .filter(({ teacherIds }) => teacherIds.includes(selectedTeacherId))
           .reduce((acc, { subjectId, groupIds, cards }) => {
             const classObj = classes.find((cl) =>
@@ -151,23 +139,23 @@ export default function Table({ originalData }: Props) {
             ];
           }, [])
           .toSorted((a, b) => {
-            const aDay = originalData.days.find((day) => day.id === a.dayId);
-            const bDay = originalData.days.find((day) => day.id === b.dayId);
+            const aDay = timetable.days.find((day) => day.id === a.dayId);
+            const bDay = timetable.days.find((day) => day.id === b.dayId);
 
             if (aDay.position < bDay.position) return -1;
             if (aDay.position > bDay.position) return 1;
 
-            const aPeriod = originalData.periods.find(
+            const aPeriod = timetable.periods.find(
               (period) => period.id === a.periodId,
             );
-            const bPeriod = originalData.periods.find(
+            const bPeriod = timetable.periods.find(
               (period) => period.id === b.periodId,
             );
 
             return aPeriod.position - bPeriod.position;
           })
       : [];
-    let views = originalData.views.filter((view) => !view.isDefault);
+    let views = timetable.views.filter((view) => !view.isDefault);
 
     views = selectedTeacherId
       ? views.filter((view) =>
@@ -178,34 +166,13 @@ export default function Table({ originalData }: Props) {
       : views;
 
     return {
-      ...originalData,
+      ...timetable,
       views,
       classes,
       activities,
       selectedTeacherCards,
     } as TeacherTimetable;
   }, [selectedTeacherId, selectedClassId]);
-
-  const share = useCallback(async () => {
-    try {
-      const url = window.location.href;
-
-      if (navigator.share) {
-        const text = getTitle({ teacher: teacherName, className });
-
-        await navigator.share({
-          title: text,
-          url,
-          text,
-        });
-      } else {
-        await navigator.clipboard.writeText(url);
-        setLinkCopied(true);
-      }
-    } catch (error) {
-      console.log("Error sharing", error);
-    }
-  }, [teacherName, className, selectedTeacherId, selectedClassId]);
 
   const canShow =
     (!selectedTeacherId || data.selectedTeacherCards.length > 0) &&
@@ -214,55 +181,18 @@ export default function Table({ originalData }: Props) {
   return (
     <>
       <div className="flex w-full flex-col justify-center gap-4 md:flex-row print:hidden">
-        <div className="flex flex-col items-center gap-2 md:w-auto">
-          <Label className="text-xl font-semibold" htmlFor="teachers">
-            Müəllim cədvəli:
-          </Label>
-          <Select
-            onChange={onTeacherSelect}
-            id="teachers"
-            className="selector-container w-full max-w-sm text-lg font-medium md:w-sm"
-            value={selectedTeacherId}
-          >
-            <option value="" className="text-lg font-medium">
-              Bütün Müəllimlər ({originalData.teachers.length})
-            </option>
-            {originalData.teachers.map((teacher) => (
-              <option
-                key={teacher.id}
-                value={teacher.id}
-                className="text-lg font-medium"
-              >
-                {teacher.name}
-              </option>
-            ))}
-          </Select>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 md:w-auto">
-          <Label className="text-xl font-semibold" htmlFor="classes">
-            Sinif cədvəli:
-          </Label>
-          <Select
-            onChange={onClassSelect}
-            id="classes"
-            className="selector-container w-full max-w-sm text-lg font-medium md:w-sm"
-            value={selectedClassId}
-          >
-            <option value="" className="text-lg font-medium">
-              Bütün siniflər ({originalData.classes.length})
-            </option>
-            {originalData.classes.map((classObj) => (
-              <option
-                key={classObj.id}
-                value={classObj.id}
-                className="text-lg font-medium"
-              >
-                {classObj.name}
-              </option>
-            ))}
-          </Select>
-        </div>
+        <Selector
+          label="Müəllim cədvəli:"
+          onChange={onTeacherSelect}
+          value={selectedTeacherId}
+          options={SELECTOR_TEACHER_OPTIONS}
+        />
+        <Selector
+          label="Sinif cədvəli:"
+          onChange={onClassSelect}
+          value={selectedClassId}
+          options={SELECTOR_CLASS_OPTIONS}
+        />
       </div>
       {canShow ? (
         <>
@@ -270,31 +200,12 @@ export default function Table({ originalData }: Props) {
             selectedTeacherCards={data.selectedTeacherCards}
             data={data}
           />
-          <Button
-            className="gap-2 bg-neutral-900 text-xl font-bold text-white md:text-base dark:bg-white dark:text-gray-900 print:hidden"
-            onClick={share}
-          >
-            {linkCopied ? (
-              <>
-                <FaCheck className={ICON_SIZE_CLASSES} />
-                Link Kopyalandı
-              </>
-            ) : (
-              <>
-                {navigator.share ? (
-                  <MdOutlineIosShare className={ICON_SIZE_CLASSES} />
-                ) : (
-                  <FaLink className={ICON_SIZE_CLASSES} />
-                )}
-                Paylaş
-              </>
-            )}
-          </Button>
-          {linkCopied && (
-            <p className="text-center text-xl font-semibold">
-              Bu linkə keçid edən hər kəs eyni cədvəli görəcək.
-            </p>
-          )}
+          <ShareButton
+            teacherName={teacherName}
+            className={className}
+            selectedClassId={selectedClassId}
+            selectedTeacherId={selectedTeacherId}
+          />
           <div className="flex w-full flex-col items-center gap-8">
             {data.views.map((view, viewIndex) => {
               const classes = data.classes.filter((cl) =>

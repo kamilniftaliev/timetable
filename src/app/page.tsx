@@ -1,21 +1,10 @@
-import type { Timetable } from "@/types";
-import timelineData from "../../public/cedvel.json";
-import Table from "@/components/table";
+import Table from "@/components/Table";
 // import { InstallPrompt, PushNotificationManager } from "@/components";
 import { Suspense } from "react";
 import { Title } from "@/components";
 import { getTitle } from "@/utils";
 import { PAGE_DESCRIPTION } from "@/constants";
 import { Spinner } from "flowbite-react";
-
-let originalData = timelineData as any as Timetable;
-
-originalData = {
-  ...originalData,
-  teachers: originalData.teachers.toSorted((a, b) =>
-    a.name.localeCompare(b.name),
-  ),
-};
 
 export async function generateMetadata({
   searchParams,
@@ -53,7 +42,7 @@ export default function Home() {
             />
           }
         >
-          <Table originalData={originalData} />
+          <Table />
         </Suspense>
       </main>
     </>

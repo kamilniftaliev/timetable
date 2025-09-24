@@ -1,3 +1,6 @@
+import type { Timetable } from "@/types";
+import timelineData from "../../public/cedvel.json";
+
 export const POSITION_SUFFIX = {
   1: "ый",
   2: "ой",
@@ -24,3 +27,34 @@ export const TABLE_CLASSES = {
 export const ICON_SIZE_CLASSES = "w-5 h-5";
 
 export const PAGE_DESCRIPTION = `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi üzrə cədvəli`;
+
+const originalData = timelineData as any as Timetable;
+
+export const timetable = {
+  ...originalData,
+  teachers: originalData.teachers.toSorted((a, b) =>
+    a.name.localeCompare(b.name),
+  ),
+};
+
+export const SELECTOR_CLASS_OPTIONS = [
+  {
+    value: "",
+    name: `Bütün siniflər (${timetable.classes.length})`,
+  },
+  ...timetable.classes.map((classObj) => ({
+    value: classObj.id,
+    name: classObj.name,
+  })),
+];
+
+export const SELECTOR_TEACHER_OPTIONS = [
+  {
+    value: "",
+    name: `Bütün Müəllimlər (${timetable.teachers.length})`,
+  },
+  ...timetable.teachers.map((teacher) => ({
+    value: teacher.id,
+    name: teacher.name,
+  })),
+];
