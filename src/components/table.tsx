@@ -200,10 +200,13 @@ export default function Table({ originalData }: Props) {
       const url = window.location.href;
 
       if (navigator.share) {
+        let schoolPrefix = teacherName || className ? "" : "Məktəb";
         await navigator.share({
           title: getTitle(),
           url,
-          text: `${teacherName || ""} ${className ? `${className} sinfi üzrə` : ""} cədvəli: \n ${url}`.trim(),
+          text: `${schoolPrefix} ${teacherName || ""} ${className ? `${className} sinfi üzrə` : ""} cədvəli:`
+            .replaceAll(/\s+/g, " ")
+            .trim(),
         });
       } else {
         await navigator.clipboard.writeText(url);
