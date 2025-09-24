@@ -201,12 +201,14 @@ export default function Table({ originalData }: Props) {
 
       if (navigator.share) {
         let schoolPrefix = teacherName || className ? "" : "Məktəb";
-        await navigator.share({
-          title: getTitle(),
-          url,
-          text: `${schoolPrefix} ${teacherName || ""} ${className ? `${className} sinfi üzrə` : ""} cədvəli:`
+        const text =
+          `${schoolPrefix} ${teacherName || ""} ${className ? `${className} sinfi üzrə` : ""} cədvəli:`
             .replaceAll(/\s+/g, " ")
-            .trim(),
+            .trim();
+        await navigator.share({
+          title: text,
+          url,
+          text,
         });
       } else {
         await navigator.clipboard.writeText(url);
