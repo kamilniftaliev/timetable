@@ -41,9 +41,9 @@
   box-shadow: none;
 }
 
-/* 
 @media print {
-  .teacher-selector-container {
-    display: none;
+  .view-container {
+    page-break-before: always;
+    page-break-inside: avoid;
   }
-} */
+}

@@ -6,14 +6,18 @@ import {
   getCellClass,
   getDays,
   getPeriodPosition,
-  getSubjectName,
+  getSubject,
+  getTitle,
   getViewPeriods,
 } from "@/utils";
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { Label, Select } from "flowbite-react";
+import { Button, Label, Select } from "flowbite-react";
 import { TeacherActivityList } from "./TeacherActivityList";
-import { TABLE_CLASSES, TITLE } from "@/constants";
-import { useRouter, useSearchParams } from "next/navigation";
+import { ICON_SIZE_CLASSES, TABLE_CLASSES } from "@/constants";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Title } from "./Title";
+import { MdOutlineIosShare } from "react-icons/md";
+import { FaLink, FaCheck } from "react-icons/fa6";
 
 interface Props {
   originalData: Timetable;
@@ -21,6 +25,7 @@ interface Props {
 
 export default function Table({ originalData }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const teacherName = searchParams.get("teacher");
   const originalTeacherId =
@@ -35,13 +40,38 @@ export default function Table({ originalData }: Props) {
       originalData.classes.find(({ name }) => name === className)?.id) ||
     "";
   const [selectedClassId, setSelectedClassId] = useState(originalClassId);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       document.title =
-        selectedTeacherId && teacherName ? `${teacherName} cədvəli` : TITLE;
+        selectedTeacherId && teacherName
+          ? `${teacherName} cədvəli`
+          : getTitle();
     }, 0);
   }, [selectedTeacherId, teacherName]);
+
+  useEffect(() => {
+    if (!linkCopied) return;
+
+    const timeout = setTimeout(() => setLinkCopied(false), 5000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [linkCopied]);
+
+  const toggleParams = useCallback(
+    (name: string, value?: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (value) params.set(name, value);
+      else params.delete(name);
+
+      router.push(`${pathname}?${params}`);
+    },
+    [searchParams, pathname],
+  );
 
   const onTeacherSelect = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
@@ -52,36 +82,23 @@ export default function Table({ originalData }: Props) {
         originalData.teachers.find(({ id }) => id === teacherId)?.name;
 
       setSelectedTeacherId(teacherId);
-
-      if (teacherName) {
-        const params = new URLSearchParams(searchParams.toString());
-        params.set("teacher", teacherName);
-
-        router.push(`?${params.toString()}`);
-      } else {
-        router.push("/");
-      }
+      toggleParams("teacher", teacherName);
     },
-    [],
+    [toggleParams],
   );
 
-  const onClassSelect = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
-    const classId = event.target.value;
+  const onClassSelect = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      const classId = event.target.value;
 
-    const className =
-      classId && originalData.classes.find(({ id }) => id === classId)?.name;
+      const className =
+        classId && originalData.classes.find(({ id }) => id === classId)?.name;
 
-    setSelectedClassId(classId);
-
-    if (className) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("class", className);
-
-      router.push(`?${params.toString()}`);
-    } else {
-      router.push("/");
-    }
-  }, []);
+      setSelectedClassId(classId);
+      toggleParams("class", className);
+    },
+    [toggleParams],
+  );
 
   const data = useMemo(() => {
     let activities = selectedTeacherId
@@ -178,6 +195,25 @@ export default function Table({ originalData }: Props) {
     } as TeacherTimetable;
   }, [selectedTeacherId, selectedClassId]);
 
+  const share = useCallback(async () => {
+    try {
+      const url = window.location.href;
+
+      if (navigator.share) {
+        await navigator.share({
+          title: getTitle(),
+          url,
+          text: `${teacherName || ""} ${className ? `${className} sinfi üzrə` : ""} cədvəli: \n ${url}`.trim(),
+        });
+      } else {
+        await navigator.clipboard.writeText(url);
+        setLinkCopied(true);
+      }
+    } catch (error) {
+      console.log("Error sharing", error);
+    }
+  }, []);
+
   const canShow =
     (!selectedTeacherId || data.selectedTeacherCards.length > 0) &&
     data.activities.length > 0;
@@ -241,26 +277,57 @@ export default function Table({ originalData }: Props) {
             selectedTeacherCards={data.selectedTeacherCards}
             data={data}
           />
-          <div className="flex w-full flex-col gap-8">
-            {data.views.map((view) => {
+          <Button
+            className="gap-2 bg-neutral-900 text-xl font-bold text-white md:text-base dark:bg-white dark:text-gray-900 print:hidden"
+            onClick={share}
+          >
+            {linkCopied ? (
+              <>
+                <FaCheck className={ICON_SIZE_CLASSES} />
+                Link Kopyalandı
+              </>
+            ) : (
+              <>
+                {navigator.share ? (
+                  <MdOutlineIosShare className={ICON_SIZE_CLASSES} />
+                ) : (
+                  <FaLink className={ICON_SIZE_CLASSES} />
+                )}
+                Paylaş
+              </>
+            )}
+          </Button>
+          {linkCopied && (
+            <p className="text-center text-xl font-semibold">
+              Bu linkə keçid edən hər kəs eyni cədvəli görəcək.
+            </p>
+          )}
+          <div className="flex w-full flex-col items-center gap-8">
+            {data.views.map((view, viewIndex) => {
               const classes = data.classes.filter((cl) =>
                 view.entityIds?.includes(cl.id),
               );
+              const overflowsHorizontally = classes.length > 7;
               const periods = getViewPeriods(data, view, selectedTeacherId);
               const days = getDays(data, selectedTeacherId);
 
-              const tableDataWidth = classes.length * 200 + 150;
+              const tableDataWidth = classes.length * 150;
               const dayNameMaxHeight = periods.length * 35;
 
               return classes.length ? (
                 <div
                   key={view.id}
-                  className="mt-8 flex flex-col justify-center gap-6"
+                  className="view-container mt-8 flex flex-col justify-center gap-6 print:mt-0 print:gap-2"
                 >
-                  <h2 className="text-center text-3xl font-bold">
+                  <Title
+                    shiftNumber={data.views.length > 1 ? viewIndex + 1 : 0}
+                    className="hidden print:block"
+                  />
+
+                  <h2 className="text-center text-3xl font-bold print:hidden">
                     {view.name}
                   </h2>
-                  <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)]">
+                  <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)] print:max-w-full">
                     <table className="mx-auto border-4 dark:border-white">
                       <tbody>
                         {days.map((day, dayIndex) => {
@@ -273,7 +340,7 @@ export default function Table({ originalData }: Props) {
                                 )}
                               >
                                 <span
-                                  className="vertical-text -mb-1 w-7 truncate text-center font-bold text-ellipsis"
+                                  className="vertical-text -mb-1 w-7 truncate text-center font-bold text-ellipsis print:w-4.5"
                                   style={{
                                     maxHeight: dayNameMaxHeight,
                                   }}
@@ -344,7 +411,7 @@ export default function Table({ originalData }: Props) {
                                             </div>
                                           </td>
                                           {classes.map((cl, classIndex) => {
-                                            const subjectName = getSubjectName(
+                                            const subject = getSubject(
                                               data,
                                               cl,
                                               day,
@@ -358,7 +425,29 @@ export default function Table({ originalData }: Props) {
                                                 )}
                                                 key={cl.id + period.id}
                                               >
-                                                {subjectName}
+                                                {subject ? (
+                                                  <>
+                                                    <span
+                                                      className={cn(
+                                                        overflowsHorizontally
+                                                          ? "print:hidden"
+                                                          : "",
+                                                      )}
+                                                    >
+                                                      {subject.name}
+                                                    </span>
+                                                    <span
+                                                      className={cn("hidden", {
+                                                        "print:block":
+                                                          overflowsHorizontally,
+                                                      })}
+                                                    >
+                                                      {subject.shortName}
+                                                    </span>
+                                                  </>
+                                                ) : (
+                                                  ""
+                                                )}
                                               </td>
                                             );
                                           })}

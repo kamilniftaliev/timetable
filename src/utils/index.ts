@@ -81,21 +81,19 @@ export function getViewPeriods(
 
 export function getCellClass(classIndex: number) {
   return cn(
-    `h-8 min-w-38 w-38 max-h-8 min-h-8 py-1 px-2 text-center truncate`,
+    `w-38 print:w-auto print:text-[10px] py-1 px-2 print:px-0.5 print:py-0 text-center truncate`,
     {
       "border-l": classIndex > 0,
     },
   );
 }
 
-export function getSubjectName(
+export function getSubject(
   data: Timetable,
   cl: Class,
   day: Day,
   period: Period,
 ) {
-  let subjectName = "";
-
   const activity = data.activities.find(
     (activity) =>
       activity.groupIds.some((groupId) =>
@@ -108,13 +106,10 @@ export function getSubjectName(
       ),
   );
 
-  if (activity) {
-    subjectName =
-      data.subjects.find((subject) => subject.id === activity.subjectId)
-        ?.name || "";
-  }
-
-  return subjectName;
+  return (
+    activity &&
+    data.subjects.find((subject) => subject.id === activity.subjectId)
+  );
 }
 
 export function getDays(data: Timetable, selectedTeacherId: Teacher["id"]) {
@@ -125,4 +120,11 @@ export function getDays(data: Timetable, selectedTeacherId: Teacher["id"]) {
         ),
       )
     : data.days;
+}
+
+export function getTitle(shiftNumber = 0) {
+  return `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi ${shiftNumber ? `${shiftNumber}-ci növbə` : ""} üzrə cədvəli`.replaceAll(
+    /\s+/g,
+    " ",
+  );
 }

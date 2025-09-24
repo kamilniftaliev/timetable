@@ -14,7 +14,7 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
   const shiftText = getShiftText(data);
 
   return (
-    <div className="w-full max-w-sm md:w-2/3">
+    <div className="w-full max-w-sm md:w-2/3 print:hidden">
       <p className="text-center text-xl font-bold">
         {shiftText} toplam {selectedTeacherCards.length} dərs
       </p>

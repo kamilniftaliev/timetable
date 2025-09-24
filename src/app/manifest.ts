@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { TITLE } from "@/constants";
+import { getTitle } from "@/utils";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Məktəb Cədvəli",
     short_name: "Məktəb Cədvəli",
-    description: TITLE,
+    description: getTitle(),
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

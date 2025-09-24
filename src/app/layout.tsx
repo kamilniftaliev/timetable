@@ -6,12 +6,11 @@ import {
 import type { Metadata } from "next";
 import "./globals.css";
 import { type ReactNode } from "react";
-import { cn } from "@/utils";
-import { TITLE } from "@/constants";
+import { cn, getTitle } from "@/utils";
 
 export const metadata: Metadata = {
-  title: TITLE,
-  description: TITLE,
+  title: getTitle(),
+  description: getTitle(),
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -39,11 +38,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body
         className={cn(
-          "bg-white p-4 antialiased md:p-8 dark:bg-gray-900 dark:text-white",
+          "bg-white p-4 antialiased md:p-8 dark:bg-gray-900 dark:text-white print:p-2",
         )}
       >
         <ThemeProvider>
-          <DarkThemeToggle className="absolute top-3 right-1 md:top-8 md:right-4" />
+          <DarkThemeToggle className="absolute top-3 right-1 md:top-8 md:right-4 print:hidden" />
           <main className="overflow-auto">{children}</main>
         </ThemeProvider>
       </body>
