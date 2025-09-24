@@ -217,7 +217,7 @@ export default function Table({ originalData }: Props) {
     } catch (error) {
       console.log("Error sharing", error);
     }
-  }, []);
+  }, [teacherName, className, selectedTeacherId, selectedClassId]);
 
   const canShow =
     (!selectedTeacherId || data.selectedTeacherCards.length > 0) &&
