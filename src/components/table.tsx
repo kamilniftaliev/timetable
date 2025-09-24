@@ -29,6 +29,13 @@ export default function Table({ originalData }: Props) {
     "";
   const [selectedTeacherId, setSelectedTeacherId] = useState(originalTeacherId);
 
+  const className = searchParams.get("class");
+  const originalClassId =
+    (className &&
+      originalData.classes.find(({ name }) => name === className)?.id) ||
+    "";
+  const [selectedClassId, setSelectedClassId] = useState(originalClassId);
+
   useEffect(() => {
     setTimeout(() => {
       document.title =
@@ -58,12 +65,42 @@ export default function Table({ originalData }: Props) {
     [],
   );
 
+  const onClassSelect = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
+    const classId = event.target.value;
+
+    const className =
+      classId && originalData.classes.find(({ id }) => id === classId)?.name;
+
+    setSelectedClassId(classId);
+
+    if (className) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("class", className);
+
+      router.push(`?${params.toString()}`);
+    } else {
+      router.push("/");
+    }
+  }, []);
+
   const data = useMemo(() => {
-    const activities = selectedTeacherId
+    let activities = selectedTeacherId
       ? originalData.activities.filter((activity) =>
           activity.teacherIds.includes(selectedTeacherId),
         )
       : originalData.activities;
+
+    if (selectedClassId) {
+      activities = activities.filter((activity) =>
+        activity.groupIds.some((groupId) =>
+          originalData.classes
+            .find((cl) => cl.id === selectedClassId)
+            ?.groupSets.some(({ groups }) =>
+              groups.some((group) => group.id === groupId),
+            ),
+        ),
+      );
+    }
 
     const selectedTeacherGroupIds = selectedTeacherId
       ? activities.reduce(
@@ -71,7 +108,7 @@ export default function Table({ originalData }: Props) {
           [],
         )
       : null;
-    const classes =
+    let classes =
       selectedTeacherId && selectedTeacherGroupIds
         ? originalData.classes.filter((classObj) =>
             classObj.groupSets.some(({ groups }) =>
@@ -79,15 +116,22 @@ export default function Table({ originalData }: Props) {
             ),
           )
         : originalData.classes;
+
+    if (selectedClassId) {
+      classes = classes.filter((cl) => cl.id === selectedClassId);
+    }
+
     const selectedTeacherCards = selectedTeacherId
       ? originalData.activities
           .filter(({ teacherIds }) => teacherIds.includes(selectedTeacherId))
           .reduce((acc, { subjectId, groupIds, cards }) => {
-            const classObj = originalData.classes.find((cl) =>
+            const classObj = classes.find((cl) =>
               cl.groupSets.some((group) =>
                 group.groups.some((gr) => groupIds.includes(gr.id)),
               ),
             );
+
+            if (!classObj) return acc;
 
             return [
               ...acc,
@@ -132,35 +176,66 @@ export default function Table({ originalData }: Props) {
       activities,
       selectedTeacherCards,
     } as TeacherTimetable;
-  }, [selectedTeacherId]);
+  }, [selectedTeacherId, selectedClassId]);
+
+  const canShow =
+    (!selectedTeacherId || data.selectedTeacherCards.length > 0) &&
+    data.activities.length > 0;
 
   return (
     <>
-      <div className="flex w-full flex-col items-center gap-2 md:w-auto">
-        <Label className="text-xl font-semibold" htmlFor="teachers">
-          Müəllim cədvəli:
-        </Label>
-        <Select
-          onChange={onTeacherSelect}
-          id="teachers"
-          className="teachers-select-container w-full max-w-sm text-lg font-medium md:w-sm"
-          value={selectedTeacherId}
-        >
-          <option value="" className="text-lg font-medium">
-            Bütün Müəllimlər ({data.teachers.length})
-          </option>
-          {data.teachers.map((teacher) => (
-            <option
-              key={teacher.id}
-              value={teacher.id}
-              className="text-lg font-medium"
-            >
-              {teacher.name}
+      <div className="flex w-full flex-col justify-center gap-4 md:flex-row print:hidden">
+        <div className="flex flex-col items-center gap-2 md:w-auto">
+          <Label className="text-xl font-semibold" htmlFor="teachers">
+            Müəllim cədvəli:
+          </Label>
+          <Select
+            onChange={onTeacherSelect}
+            id="teachers"
+            className="selector-container w-full max-w-sm text-lg font-medium md:w-sm"
+            value={selectedTeacherId}
+          >
+            <option value="" className="text-lg font-medium">
+              Bütün Müəllimlər ({originalData.teachers.length})
             </option>
-          ))}
-        </Select>
+            {originalData.teachers.map((teacher) => (
+              <option
+                key={teacher.id}
+                value={teacher.id}
+                className="text-lg font-medium"
+              >
+                {teacher.name}
+              </option>
+            ))}
+          </Select>
+        </div>
+
+        <div className="flex flex-col items-center gap-2 md:w-auto">
+          <Label className="text-xl font-semibold" htmlFor="classes">
+            Sinif cədvəli:
+          </Label>
+          <Select
+            onChange={onClassSelect}
+            id="classes"
+            className="selector-container w-full max-w-sm text-lg font-medium md:w-sm"
+            value={selectedClassId}
+          >
+            <option value="" className="text-lg font-medium">
+              Bütün siniflər ({originalData.classes.length})
+            </option>
+            {originalData.classes.map((classObj) => (
+              <option
+                key={classObj.id}
+                value={classObj.id}
+                className="text-lg font-medium"
+              >
+                {classObj.name}
+              </option>
+            ))}
+          </Select>
+        </div>
       </div>
-      {!selectedTeacherId || data.selectedTeacherCards.length > 0 ? (
+      {canShow ? (
         <>
           <TeacherActivityList
             selectedTeacherCards={data.selectedTeacherCards}

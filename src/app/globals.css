@@ -36,7 +36,14 @@
   box-shadow: none;
 }
 
-.teachers-select-container select:focus {
+.selector-container select:focus {
   outline: 0;
   box-shadow: none;
 }
+
+/* 
+@media print {
+  .teacher-selector-container {
+    display: none;
+  }
+} */
