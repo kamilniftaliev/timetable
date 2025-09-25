@@ -1,3 +1,10 @@
+## [1.0.22](https://github.com/kamilniftaliev/timetable/compare/v1.0.21...v1.0.22) (2025-09-25)
+
+
+### Bug Fixes
+
+* deploy message ([6b883f9](https://github.com/kamilniftaliev/timetable/commit/6b883f990c4dc0827e015789294186c6cf03c2df))
+
 ## [1.0.21](https://github.com/kamilniftaliev/timetable/compare/v1.0.20...v1.0.21) (2025-09-25)
 
 
