@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/kamilniftaliev/timetable/compare/v1.0.3...v1.0.4) (2025-09-25)
+
+
+### Bug Fixes
+
+* git .env file ([a130358](https://github.com/kamilniftaliev/timetable/commit/a130358eb5b42eff3f7dbd3c7c3f228230b9d965))
+
 ## [1.0.3](https://github.com/kamilniftaliev/timetable/compare/v1.0.2...v1.0.3) (2025-09-25)
 
 
