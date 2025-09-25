@@ -2,7 +2,6 @@
   "branches": [
     "main"
   ],
-  "repositoryUrl": "https://github.com/kamilniftaliev/timetable.git",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
