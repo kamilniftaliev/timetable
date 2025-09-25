@@ -1,3 +1,10 @@
+## [1.0.19](https://github.com/kamilniftaliev/timetable/compare/v1.0.18...v1.0.19) (2025-09-25)
+
+
+### Bug Fixes
+
+* semantic release ([735039b](https://github.com/kamilniftaliev/timetable/commit/735039b243edb71524e0b814172581beba6c8333))
+
 ## [1.0.18](https://github.com/kamilniftaliev/timetable/compare/v1.0.17...v1.0.18) (2025-09-25)
 
 
