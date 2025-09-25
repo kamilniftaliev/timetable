@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/kamilniftaliev/timetable/compare/v1.0.8...v1.0.9) (2025-09-25)
+
+
+### Bug Fixes
+
+* removed manual env config files ([5ceb522](https://github.com/kamilniftaliev/timetable/commit/5ceb52270ce7784b5daf1199403fa1204a61a946))
+
 ## [1.0.8](https://github.com/kamilniftaliev/timetable/compare/v1.0.7...v1.0.8) (2025-09-25)
 
 
