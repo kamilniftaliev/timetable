@@ -2,11 +2,11 @@
 
 ## Getting Started
 
-Run the development server:
+Running locally:
 
 ```bash
 yarn
-# or
+
 yarn dev
 ```
 
