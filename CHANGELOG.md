@@ -1,3 +1,10 @@
+## [1.0.20](https://github.com/kamilniftaliev/timetable/compare/v1.0.19...v1.0.20) (2025-09-25)
+
+
+### Bug Fixes
+
+* without app version in env both build & deploy ([6d57064](https://github.com/kamilniftaliev/timetable/commit/6d57064543096ed3767179f447490358ca105cc2))
+
 ## [1.0.19](https://github.com/kamilniftaliev/timetable/compare/v1.0.18...v1.0.19) (2025-09-25)
 
 
