@@ -1,3 +1,10 @@
+## [1.0.16](https://github.com/kamilniftaliev/timetable/compare/v1.0.15...v1.0.16) (2025-09-25)
+
+
+### Bug Fixes
+
+* version env var in github release.yml ([35096bb](https://github.com/kamilniftaliev/timetable/commit/35096bbcfbf52dfe63642a8941bf3cd209f26de8))
+
 ## [1.0.15](https://github.com/kamilniftaliev/timetable/compare/v1.0.14...v1.0.15) (2025-09-25)
 
 
