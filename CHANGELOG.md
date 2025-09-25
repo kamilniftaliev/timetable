@@ -1,3 +1,10 @@
+## [1.0.23](https://github.com/kamilniftaliev/timetable/compare/v1.0.22...v1.0.23) (2025-09-25)
+
+
+### Bug Fixes
+
+* netlify deploy should build ([e346359](https://github.com/kamilniftaliev/timetable/commit/e346359a2e590aa31761f4f3176bdaced8e8076b))
+
 ## [1.0.22](https://github.com/kamilniftaliev/timetable/compare/v1.0.21...v1.0.22) (2025-09-25)
 
 
