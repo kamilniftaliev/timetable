@@ -3,7 +3,7 @@ import Table from "@/components/Table";
 import { Suspense } from "react";
 import { Title } from "@/components";
 import { getTitle } from "@/utils";
-import { PAGE_DESCRIPTION } from "@/constants";
+import { APP_VERSION, PAGE_DESCRIPTION } from "@/constants";
 import { Spinner } from "flowbite-react";
 
 export async function generateMetadata({
@@ -44,6 +44,7 @@ export default function Home() {
         >
           <Table />
         </Suspense>
+        <footer className="text-xs">v{APP_VERSION}</footer>
       </main>
     </>
   );
