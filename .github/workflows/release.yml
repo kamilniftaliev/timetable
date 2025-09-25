@@ -9,14 +9,21 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Checkout the repo
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # required so semantic-release can analyze commit history
+          fetch-depth: 0
+
+      # 2️⃣ Setup Node.js (Node 20+ required)
       - uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: yarn
+
+      # 3️⃣ Install dependencies
       - run: yarn install --frozen-lockfile
+
+      # 4️⃣ Run semantic-release
       - run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
