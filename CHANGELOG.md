@@ -1,3 +1,10 @@
+## [1.0.18](https://github.com/kamilniftaliev/timetable/compare/v1.0.17...v1.0.18) (2025-09-25)
+
+
+### Bug Fixes
+
+* removed quotes ([a923e57](https://github.com/kamilniftaliev/timetable/commit/a923e571d07b91164cbf63d80f506cdd7020c830))
+
 ## [1.0.17](https://github.com/kamilniftaliev/timetable/compare/v1.0.16...v1.0.17) (2025-09-25)
 
 
