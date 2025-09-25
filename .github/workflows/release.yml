@@ -35,7 +35,6 @@ jobs:
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
           npx netlify env:set NEXT_PUBLIC_APP_VERSION "${{ steps.semantic.outputs.new_release_version }}"
-          npx netlify build
           npx netlify deploy \
             --dir=.next \
             --prod \

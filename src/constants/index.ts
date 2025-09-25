@@ -2,7 +2,5 @@ export const PAGE_DESCRIPTION = `Xaçmaz şəhəri Akademik Zərifə Əliyeva ad
 
 export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || "1";
 
-console.log("APP_VERSION", APP_VERSION);
-
 export * from "./ui";
 export * from "./data";
