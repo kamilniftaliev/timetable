@@ -31,24 +31,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
-      - name: Update Netlify env var with release version
-        run: npx netlify env:set NEXT_PUBLIC_APP_VERSION "${{ steps.semantic.outputs.new_release_version }}"
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
-      - name: Trigger Netlify build
-        run: npx netlify build
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
       - name: Deploy to Netlify
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
-          npx netlify deploy \
-            --dir=.next \
-            --prod
+          npx netlify env:set NEXT_PUBLIC_APP_VERSION "${{ steps.semantic.outputs.new_release_version }}"
+          npx netlify build
+          npx netlify deploy --dir=.next --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
