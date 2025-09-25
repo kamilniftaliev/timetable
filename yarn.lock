@@ -387,6 +387,11 @@
   resolved "https://registry.yarnpkg.com/@next/env/-/env-15.5.3.tgz#59ab3143b370774464143731587318b067cc3f87"
   integrity sha512-RSEDTRqyihYXygx/OJXwvVupfr9m04+0vH8vyy0HfZ7keRto6VX9BbEk0J2PUk0VGy6YhklJUSrgForov5F9pw==
 
+"@next/env@^15.5.4":
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/@next/env/-/env-15.5.4.tgz#1d4aa6b238662d9cd95aea356b149b6f73061f95"
+  integrity sha512-27SQhYp5QryzIT5uO8hq99C69eLQ7qkzkDPsk3N+GuS2XgOgoYEeOav7Pf8Tn4drECOVDsDg8oj+/DVy8qQL2A==
+
 "@next/eslint-plugin-next@15.5.3":
   version "15.5.3"
   resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-15.5.3.tgz#81859723e22a649df045d291630cf9fae46e3e46"
