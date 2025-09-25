@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/kamilniftaliev/timetable/compare/v1.0.11...v1.0.12) (2025-09-25)
+
+
+### Bug Fixes
+
+* reverted netlify build ([399ef62](https://github.com/kamilniftaliev/timetable/commit/399ef62ec9484e8f009b3f1ff3fe5bb684ada31f))
+
 ## [1.0.11](https://github.com/kamilniftaliev/timetable/compare/v1.0.10...v1.0.11) (2025-09-25)
 
 
