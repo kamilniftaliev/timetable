@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/kamilniftaliev/timetable/compare/v1.0.0...v1.0.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* release test 8 ([80d9aa4](https://github.com/kamilniftaliev/timetable/commit/80d9aa4954e3f0d1bab5882bc4f7514076343590))
+
 # 1.0.0 (2025-09-25)
 
 
