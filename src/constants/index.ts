@@ -59,6 +59,4 @@ export const SELECTOR_TEACHER_OPTIONS = [
   })),
 ];
 
-export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || "dev";
-
-console.log("APP_VERSION", APP_VERSION);
+export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || "1";

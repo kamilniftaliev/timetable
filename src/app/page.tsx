@@ -44,7 +44,7 @@ export default function Home() {
         >
           <Table />
         </Suspense>
-        <footer className="text-xs">v{APP_VERSION}</footer>
+        <footer className="mt-16 text-xs">v{APP_VERSION}</footer>
       </main>
     </>
   );
