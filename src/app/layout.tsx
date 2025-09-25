@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               gtag('js', new Date());
 
               gtag('config', 'G-5LN9DBMH51');
-              gtag('set', { app_version: ${APP_VERSION} });
+              gtag('set', { app_version: "${APP_VERSION}" });
             `,
           }}
         />
