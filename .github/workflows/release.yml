@@ -1,4 +1,4 @@
-name: Release
+name: Deploy to Netlify
 
 on:
   push:
@@ -20,7 +20,6 @@ jobs:
           node-version: 20
           cache: yarn
 
-      # 3️⃣ Install dependencies
       - run: yarn install --frozen-lockfile
 
       - name: Semantic Release
@@ -38,7 +37,7 @@ jobs:
           npx netlify deploy \
             --dir=.next \
             --prod \
-            --message "Release v${{ steps.semantic.outputs.new_release_version }}"
+            --message "Release v${{ steps.semantic.outputs.new_release_version }} - ${{ github.event.head_commit.message }}"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
