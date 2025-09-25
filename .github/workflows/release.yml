@@ -23,18 +23,13 @@ jobs:
       # 3️⃣ Install dependencies
       - run: yarn install --frozen-lockfile
 
-      # 4️⃣ Run semantic-release
-      - run: yarn semantic-release
+      - name: Semantic Release
         id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-      # - name: Semantic Release
-      #   id: semantic
-      #   uses: cycjimmy/semantic-release-action@v4
-      #   with:
-      #     semantic_version: 24
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
       - name: Update Netlify env var with release version
         run: npx netlify env:set NEXT_PUBLIC_APP_VERSION "${{ steps.semantic.outputs.new_release_version }}"
@@ -47,7 +42,6 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NEXT_PUBLIC_APP_VERSION: ${{ steps.semantic.outputs.new_release_version }}
 
       - name: Deploy to Netlify
         if: steps.semantic.outputs.new_release_published == 'true'
@@ -58,4 +52,3 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NEXT_PUBLIC_APP_VERSION: ${{ steps.semantic.outputs.new_release_version }}
