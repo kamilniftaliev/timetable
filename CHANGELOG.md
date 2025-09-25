@@ -1,3 +1,10 @@
+## [1.0.21](https://github.com/kamilniftaliev/timetable/compare/v1.0.20...v1.0.21) (2025-09-25)
+
+
+### Bug Fixes
+
+* combined in a single step ([2099687](https://github.com/kamilniftaliev/timetable/commit/209968795877fcd1261290af92224480d4a7b4c9))
+
 ## [1.0.20](https://github.com/kamilniftaliev/timetable/compare/v1.0.19...v1.0.20) (2025-09-25)
 
 
