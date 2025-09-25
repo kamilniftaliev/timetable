@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/kamilniftaliev/timetable/compare/v1.0.2...v1.0.3) (2025-09-25)
+
+
+### Bug Fixes
+
+* token update ([d766acd](https://github.com/kamilniftaliev/timetable/commit/d766acd1bcf360e09bb992e36d433b3f09e80752))
+
 ## [1.0.2](https://github.com/kamilniftaliev/timetable/compare/v1.0.1...v1.0.2) (2025-09-25)
 
 
