@@ -30,4 +30,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
       - name: Write app version to .env.production
-        run: echo "NEXT_PUBLIC_APP_VERSION=${{ steps.semantic.outputs.new_release_version }}" > .env.production
+        run: echo "NEXT_PUBLIC_APP_VERSION=${{ steps.semantic.outputs.new_release_version }}" > .env
