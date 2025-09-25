@@ -1,3 +1,10 @@
+## [1.0.24](https://github.com/kamilniftaliev/timetable/compare/v1.0.23...v1.0.24) (2025-09-25)
+
+
+### Bug Fixes
+
+* fixed app release version ([56681e5](https://github.com/kamilniftaliev/timetable/commit/56681e5a66533ae6ff478a3d7904c05027cc481b))
+
 ## [1.0.23](https://github.com/kamilniftaliev/timetable/compare/v1.0.22...v1.0.23) (2025-09-25)
 
 
