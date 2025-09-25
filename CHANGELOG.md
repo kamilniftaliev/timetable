@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/kamilniftaliev/timetable/compare/v1.0.5...v1.0.6) (2025-09-25)
+
+
+### Bug Fixes
+
+* removed version number ([560eae1](https://github.com/kamilniftaliev/timetable/commit/560eae1da7644bd282931196c9492ca76935750f))
+
 ## [1.0.5](https://github.com/kamilniftaliev/timetable/compare/v1.0.4...v1.0.5) (2025-09-25)
 
 
