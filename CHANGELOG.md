@@ -1,3 +1,10 @@
+## [1.0.17](https://github.com/kamilniftaliev/timetable/compare/v1.0.16...v1.0.17) (2025-09-25)
+
+
+### Bug Fixes
+
+* same ([09e7821](https://github.com/kamilniftaliev/timetable/commit/09e782169272a703eca13964ccdfaf226001dafe))
+
 ## [1.0.16](https://github.com/kamilniftaliev/timetable/compare/v1.0.15...v1.0.16) (2025-09-25)
 
 
