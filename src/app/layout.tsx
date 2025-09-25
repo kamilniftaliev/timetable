@@ -5,9 +5,9 @@ import {
 } from "flowbite-react";
 import "./globals.css";
 import type { ReactNode } from "react";
-import { cn } from "@/utils";
-
 import type { Viewport } from "next";
+import { cn } from "@/utils";
+import { APP_VERSION } from "@/constants";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -36,6 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               gtag('js', new Date());
 
               gtag('config', 'G-5LN9DBMH51');
+              gtag('set', { app_version: ${APP_VERSION} });
             `,
           }}
         />

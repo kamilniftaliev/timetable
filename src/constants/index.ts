@@ -58,3 +58,5 @@ export const SELECTOR_TEACHER_OPTIONS = [
     name: teacher.name,
   })),
 ];
+
+export const APP_VERSION = process.env.APP_VERSION;
