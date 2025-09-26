@@ -1,3 +1,10 @@
+## [1.0.26](https://github.com/kamilniftaliev/timetable/compare/v1.0.25...v1.0.26) (2025-09-26)
+
+
+### Bug Fixes
+
+* simple text updates ([44504c5](https://github.com/kamilniftaliev/timetable/commit/44504c5eb7d456232187a736fc01e29295181c04))
+
 ## [1.0.25](https://github.com/kamilniftaliev/timetable/compare/v1.0.24...v1.0.25) (2025-09-26)
 
 
