@@ -1,3 +1,10 @@
+## [1.0.25](https://github.com/kamilniftaliev/timetable/compare/v1.0.24...v1.0.25) (2025-09-26)
+
+
+### Bug Fixes
+
+* deploying on every commit now, regardless of semantic release ([55434c3](https://github.com/kamilniftaliev/timetable/commit/55434c33d279d66156f056688e470f1172df6a87))
+
 ## [1.0.24](https://github.com/kamilniftaliev/timetable/compare/v1.0.23...v1.0.24) (2025-09-25)
 
 
