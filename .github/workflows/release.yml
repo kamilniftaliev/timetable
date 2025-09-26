@@ -31,7 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
       - name: Deploy to Netlify
-        if: steps.semantic.outputs.new_release_published == 'true'
         run: |
           npx netlify env:set NEXT_PUBLIC_APP_VERSION "${{ steps.semantic.outputs.new_release_version }}"
           npx netlify deploy \
