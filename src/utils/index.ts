@@ -134,7 +134,7 @@ export function getTitle({
   let title = `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi ${shiftNumber ? `${shiftNumber}-ci növbə` : ""} üzrə cədvəli`;
 
   if (teacher) {
-    title = `Müəllim ${teacher} üçün ${className ? `${className} sinfi üzrə ` : ""} cədvəl`;
+    title = `${teacher} üçün ${className ? `${className} sinfi üzrə ` : ""} cədvəl`;
   } else if (className) {
     title = `${className} sinfi üzrə cədvəl`;
   }

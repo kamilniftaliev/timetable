@@ -59,7 +59,7 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
                     <span className="font-bold uppercase">{classObj.name}</span>{" "}
                     кл.
                   </span>
-                  <span>({subject.name})</span>
+                  <span>({subject.shortName})</span>
                 </div>
               </ListGroupItem>
             );
