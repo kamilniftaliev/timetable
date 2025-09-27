@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/kamilniftaliev/timetable/compare/v1.1.1...v1.1.2) (2025-09-27)
+
+
+### Bug Fixes
+
+* typescript error ([6eb37e3](https://github.com/kamilniftaliev/timetable/commit/6eb37e3230d80790feba96aa0852797342ee853e))
+
 ## [1.1.1](https://github.com/kamilniftaliev/timetable/compare/v1.1.0...v1.1.1) (2025-09-27)
 
 
