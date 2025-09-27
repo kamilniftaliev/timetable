@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/kamilniftaliev/timetable/compare/v1.0.26...v1.1.0) (2025-09-27)
+
+
+### Features
+
+* teacher classes grouped by class + new timetable ([3f1e615](https://github.com/kamilniftaliev/timetable/commit/3f1e6150ed64e5d2e7a574e0e51ebda3984a0cad))
+
 ## [1.0.26](https://github.com/kamilniftaliev/timetable/compare/v1.0.25...v1.0.26) (2025-09-26)
 
 
