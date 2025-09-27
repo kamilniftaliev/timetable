@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/kamilniftaliev/timetable/compare/v1.1.0...v1.1.1) (2025-09-27)
+
+
+### Bug Fixes
+
+* adding @netlify/edge-functions-bootstrap explicitly to fix GH ci ([f5c08b9](https://github.com/kamilniftaliev/timetable/commit/f5c08b91af48a28827137b40053666dda30ce1ac))
+
 # [1.1.0](https://github.com/kamilniftaliev/timetable/compare/v1.0.26...v1.1.0) (2025-09-27)
 
 
