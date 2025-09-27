@@ -12,7 +12,6 @@ import type {
   View,
 } from "@/types";
 
-// Set locale to Azerbaijani
 moment.locale("az");
 
 export function cn(...inputs: ClassValue[]) {
