@@ -51,6 +51,7 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
                 >
                   <div className="flex w-full justify-center gap-1.5 truncate">
                     <span className="font-bold uppercase">{className}</span>
+                    {/* @ts-expect-error */}
                     <span> класс - {amount} урока</span>
                   </div>
                 </ListGroupItem>
