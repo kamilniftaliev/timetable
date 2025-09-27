@@ -15,7 +15,7 @@ export function Title({ className, shiftNumber }: Props) {
         className,
       )}
     >
-      {getTitle({ shiftNumber })} (22 Sentyabr 2025)
+      {getTitle({ shiftNumber })} (29 Sentyabr 2025)
     </h1>
   );
 }
