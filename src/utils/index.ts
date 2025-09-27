@@ -1,3 +1,7 @@
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+import moment from "moment";
+import "moment/locale/az";
 import type {
   Class,
   Day,
@@ -7,8 +11,9 @@ import type {
   Timetable,
   View,
 } from "@/types";
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+
+// Set locale to Azerbaijani
+moment.locale("az");
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -140,4 +145,14 @@ export function getTitle({
   }
 
   return title.replaceAll(/\s+/g, " ");
+}
+
+export function getNextMondayDate() {
+  // Get next week's Monday
+  const nextMonday = moment().add(1, "weeks").startOf("isoWeek");
+
+  // Format as "D MMMM YYYY"
+  return nextMonday
+    .format("D MMMM YYYY")
+    .replace(/\b\p{L}/u, (c) => c.toUpperCase());
 }
