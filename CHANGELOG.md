@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/kamilniftaliev/timetable/compare/v1.1.3...v1.2.0) (2025-09-27)
+
+
+### Features
+
+* showing next monday's date in title ([767aeb7](https://github.com/kamilniftaliev/timetable/commit/767aeb75cf2c3efed320b13b51852d4d20f679e8))
+
 ## [1.1.3](https://github.com/kamilniftaliev/timetable/compare/v1.1.2...v1.1.3) (2025-09-27)
 
 
