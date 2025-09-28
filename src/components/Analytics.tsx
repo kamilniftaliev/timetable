@@ -3,7 +3,7 @@
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { pageView } from "@/utils";
+import { reportPageView } from "@/utils";
 import { APP_VERSION, GTAG_ID } from "@/constants";
 
 export function Analytics() {
@@ -14,7 +14,7 @@ export function Analytics() {
     if (!GTAG_ID) return;
     const url = pathname + searchParams.toString();
 
-    pageView(url);
+    reportPageView(url);
   }, [pathname, searchParams]);
 
   return (

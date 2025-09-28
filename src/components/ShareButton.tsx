@@ -4,7 +4,7 @@ import { Button } from "flowbite-react";
 import { MdOutlineIosShare } from "react-icons/md";
 import { FaLink, FaCheck } from "react-icons/fa6";
 import { useCallback, useEffect, useState } from "react";
-import { getTitle } from "@/utils";
+import { getTitle, reportAnalyticEvent } from "@/utils";
 import { ICON_SIZE_CLASSES } from "@/constants";
 
 interface Props {
@@ -48,6 +48,13 @@ export function ShareButton({
         await navigator.clipboard.writeText(url);
         setLinkCopied(true);
       }
+
+      reportAnalyticEvent({
+        action: "share",
+        category: "engagement",
+        label: "share",
+        value: url,
+      });
     } catch (error) {
       console.log("Error sharing", error);
     }

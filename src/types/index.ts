@@ -1,3 +1,5 @@
+export * from "./google";
+
 export type Timetable = {
   readonly id: string;
   readonly name: string;

@@ -7,6 +7,7 @@ import {
   getPeriodPosition,
   getSubject,
   getViewPeriods,
+  reportAnalyticEvent,
 } from "@/utils";
 import { useCallback, useMemo } from "react";
 import { TeacherActivityList } from "./TeacherActivityList";
@@ -51,8 +52,17 @@ export default function Table() {
     (name: string, value?: string) => {
       const params = new URLSearchParams(searchParams.toString());
 
-      if (value) params.set(name, value);
-      else params.delete(name);
+      if (value) {
+        params.set(name, value);
+        reportAnalyticEvent({
+          action: "selector_interaction",
+          category: "engagement",
+          label: name,
+          value,
+        });
+      } else {
+        params.delete(name);
+      }
 
       router.push(`${pathname}?${params}`);
     },
