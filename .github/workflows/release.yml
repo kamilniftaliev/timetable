@@ -31,6 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
       - name: Deploy to Netlify
+        if: contains(github.event.head_commit.message, "chore(release)")
         run: |
           npx netlify env:set NEXT_PUBLIC_APP_VERSION "${{ steps.semantic.outputs.new_release_version }}"
           npx netlify deploy \
