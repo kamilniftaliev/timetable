@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/kamilniftaliev/timetable/compare/v1.2.1...v1.3.0) (2025-09-28)
+
+
+### Features
+
+* analytics app version, lesson suffix ([5adad60](https://github.com/kamilniftaliev/timetable/commit/5adad608499d13f59b620159425e9c6ce4ea85c5))
+
 ## [1.2.1](https://github.com/kamilniftaliev/timetable/compare/v1.2.0...v1.2.1) (2025-09-27)
 
 
