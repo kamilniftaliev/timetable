@@ -4,10 +4,10 @@ import {
   ThemeProvider,
 } from "flowbite-react";
 import "./globals.css";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import type { Viewport } from "next";
 import { cn } from "@/utils";
-import { APP_VERSION } from "@/constants";
+import { Analytics } from "@/components";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -24,25 +24,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="az" suppressHydrationWarning>
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-5LN9DBMH51"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'G-5LN9DBMH51');
-              gtag('set', { app_version: "${APP_VERSION}" });
-            `,
-          }}
-        />
         <ThemeModeScript />
         <link rel="icon" type="image/jpeg" href="/horizontal-image.jpg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+        <Suspense>
+          <Analytics />
+        </Suspense>
       </head>
       <body
         className={cn(

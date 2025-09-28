@@ -16,7 +16,7 @@ export const SELECTOR_CLASS_OPTIONS = [
     name: `Bütün siniflər (${timetable.classes.length})`,
   },
   ...timetable.classes.map((classObj) => ({
-    value: classObj.id,
+    value: classObj.name,
     name: classObj.name,
   })),
 ];
@@ -24,10 +24,10 @@ export const SELECTOR_CLASS_OPTIONS = [
 export const SELECTOR_TEACHER_OPTIONS = [
   {
     value: "",
-    name: `Bütün Müəllimlər (${timetable.teachers.length})`,
+    name: `Bütün müəllimlər (${timetable.teachers.length})`,
   },
   ...timetable.teachers.map((teacher) => ({
-    value: teacher.id,
+    value: teacher.name,
     name: teacher.name,
   })),
 ];

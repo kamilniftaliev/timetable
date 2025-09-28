@@ -1,6 +1,5 @@
 "use client";
 
-import type { TeacherTimetable } from "@/types";
 import {
   cn,
   getCellClass,
@@ -9,7 +8,7 @@ import {
   getSubject,
   getViewPeriods,
 } from "@/utils";
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { TeacherActivityList } from "./TeacherActivityList";
 import {
   timetable,
@@ -21,24 +20,32 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Title } from "./Title";
 import { Selector } from "./Selector";
 import { ShareButton } from "./ShareButton";
+import { useTimetableData } from "@/hooks";
 
 export default function Table() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const teacherName = searchParams.get("teacher");
-  const originalTeacherId =
-    (teacherName &&
-      timetable.teachers.find(({ name }) => name === teacherName)?.id) ||
-    "";
-  const [selectedTeacherId, setSelectedTeacherId] = useState(originalTeacherId);
+  const className = searchParams.get("class") || "";
+  const teacherName = searchParams.get("teacher") || "";
 
-  const className = searchParams.get("class");
-  const originalClassId =
-    (className &&
-      timetable.classes.find(({ name }) => name === className)?.id) ||
-    "";
-  const [selectedClassId, setSelectedClassId] = useState(originalClassId);
+  const selectedClassId = useMemo(() => {
+    const classId =
+      (className &&
+        timetable.classes.find(({ name }) => name === className)?.id) ||
+      "";
+
+    return classId;
+  }, [className]);
+
+  const selectedTeacherId = useMemo(() => {
+    const teacherId =
+      (teacherName &&
+        timetable.teachers.find(({ name }) => name === teacherName)?.id) ||
+      "";
+
+    return teacherId;
+  }, [teacherName]);
 
   const toggleParams = useCallback(
     (name: string, value?: string) => {
@@ -53,144 +60,38 @@ export default function Table() {
   );
 
   const onTeacherSelect = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>) => {
-      const teacherId = event.target.value;
-
-      const teacherName =
-        teacherId &&
-        timetable.teachers.find(({ id }) => id === teacherId)?.name;
-
-      setSelectedTeacherId(teacherId);
+    (teacherName: string) => {
       toggleParams("teacher", teacherName);
     },
     [toggleParams],
   );
 
   const onClassSelect = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>) => {
-      const classId = event.target.value;
-
-      const className =
-        classId && timetable.classes.find(({ id }) => id === classId)?.name;
-
-      setSelectedClassId(classId);
+    (className: string) => {
       toggleParams("class", className);
     },
     [toggleParams],
   );
 
-  const data = useMemo(() => {
-    let activities = selectedTeacherId
-      ? timetable.activities.filter((activity) =>
-          activity.teacherIds.includes(selectedTeacherId),
-        )
-      : timetable.activities;
-
-    if (selectedClassId) {
-      activities = activities.filter((activity) =>
-        activity.groupIds.some((groupId) =>
-          timetable.classes
-            .find((cl) => cl.id === selectedClassId)
-            ?.groupSets.some(({ groups }) =>
-              groups.some((group) => group.id === groupId),
-            ),
-        ),
-      );
-    }
-
-    const selectedTeacherGroupIds = selectedTeacherId
-      ? activities.reduce(
-          (acc, activity) => [...new Set([...acc, ...activity.groupIds])],
-          [],
-        )
-      : null;
-    let classes =
-      selectedTeacherId && selectedTeacherGroupIds
-        ? timetable.classes.filter((classObj) =>
-            classObj.groupSets.some(({ groups }) =>
-              groups.some(({ id }) => selectedTeacherGroupIds.includes(id)),
-            ),
-          )
-        : timetable.classes;
-
-    if (selectedClassId) {
-      classes = classes.filter((cl) => cl.id === selectedClassId);
-    }
-
-    const selectedTeacherCards = selectedTeacherId
-      ? timetable.activities
-          .filter(({ teacherIds }) => teacherIds.includes(selectedTeacherId))
-          .reduce((acc, { subjectId, groupIds, cards }) => {
-            const classObj = classes.find((cl) =>
-              cl.groupSets.some((group) =>
-                group.groups.some((gr) => groupIds.includes(gr.id)),
-              ),
-            );
-
-            if (!classObj) return acc;
-
-            return [
-              ...acc,
-              ...cards.map((card) => ({
-                ...card,
-                subjectId,
-                classObj: classObj,
-              })),
-            ];
-          }, [])
-          .toSorted((a, b) => {
-            const aDay = timetable.days.find((day) => day.id === a.dayId);
-            const bDay = timetable.days.find((day) => day.id === b.dayId);
-
-            if (aDay.position < bDay.position) return -1;
-            if (aDay.position > bDay.position) return 1;
-
-            const aPeriod = timetable.periods.find(
-              (period) => period.id === a.periodId,
-            );
-            const bPeriod = timetable.periods.find(
-              (period) => period.id === b.periodId,
-            );
-
-            return aPeriod.position - bPeriod.position;
-          })
-      : [];
-    let views = timetable.views.filter((view) => !view.isDefault);
-
-    views = selectedTeacherId
-      ? views.filter((view) =>
-          view.entityIds?.some((classId) =>
-            classes.some((cl) => cl.id === classId),
-          ),
-        )
-      : views;
-
-    return {
-      ...timetable,
-      views,
-      classes,
-      activities,
-      selectedTeacherCards,
-    } as TeacherTimetable;
-  }, [selectedTeacherId, selectedClassId]);
+  const data = useTimetableData(selectedTeacherId, selectedClassId);
 
   const canShow =
-    (!selectedTeacherId || data.selectedTeacherCards.length > 0) &&
+    (!teacherName || data.selectedTeacherCards.length > 0) &&
     data.activities.length > 0;
 
   return (
     <>
       <div className="flex w-full flex-col justify-center gap-4 md:flex-row print:hidden">
         <Selector
-          label="Müəllim cədvəli:"
+          label="Müəllim:"
           onChange={onTeacherSelect}
-          value={selectedTeacherId}
+          selectedValue={teacherName}
           options={SELECTOR_TEACHER_OPTIONS}
         />
         <Selector
-          label="Sinif cədvəli:"
+          label="Sinif:"
           onChange={onClassSelect}
-          value={selectedClassId}
+          selectedValue={className}
           options={SELECTOR_CLASS_OPTIONS}
         />
       </div>

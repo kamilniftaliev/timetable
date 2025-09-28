@@ -1,6 +1,3 @@
-export const PAGE_DESCRIPTION = `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi üzrə cədvəli`;
-
-export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || "1";
-
+export * from "./appInfo";
 export * from "./ui";
 export * from "./data";

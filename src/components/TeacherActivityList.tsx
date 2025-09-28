@@ -1,11 +1,11 @@
 import { POSITION_SUFFIX } from "@/constants";
-import { Timetable } from "@/types";
-import { cn, getPeriodPosition, getShiftText } from "@/utils";
+import { TeacherTimetable, Timetable } from "@/types";
+import { cn, getPeriodPosition, getShiftText, getLessonSuffix } from "@/utils";
 import { ListGroup, ListGroupItem } from "flowbite-react";
 
 interface Props {
   data: Timetable;
-  selectedTeacherCards?: any[];
+  selectedTeacherCards?: TeacherTimetable["selectedTeacherCards"];
 }
 
 export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
@@ -26,8 +26,6 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
       {} as Record<string, number>,
     ),
   ).toSorted(([classA], [classB]) => parseInt(classA) - parseInt(classB));
-
-  //  sadada
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4 md:max-w-full md:items-center print:hidden">
@@ -51,8 +49,9 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
                 >
                   <div className="flex w-full justify-center gap-1.5 truncate">
                     <span className="font-bold uppercase">{className}</span>
-                    {/* @ts-expect-error */}
-                    <span> класс - {amount} урока</span>
+                    <span>
+                      класс - {amount} {getLessonSuffix(amount)}
+                    </span>
                   </div>
                 </ListGroupItem>
               );
