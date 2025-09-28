@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/kamilniftaliev/timetable/compare/v1.3.0...v1.4.0) (2025-09-28)
+
+
+### Features
+
+* share & selector interaction events reported to analytics ([cf5bb16](https://github.com/kamilniftaliev/timetable/commit/cf5bb16a0873eeecf0c4aad4e7ffbe66f9d0e466))
+
 # [1.3.0](https://github.com/kamilniftaliev/timetable/compare/v1.2.1...v1.3.0) (2025-09-28)
 
 
