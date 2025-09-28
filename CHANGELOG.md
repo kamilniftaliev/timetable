@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/kamilniftaliev/timetable/compare/v1.4.0...v1.4.1) (2025-09-28)
+
+
+### Bug Fixes
+
+* deploy only if the commit is not a release commit ([4e297a2](https://github.com/kamilniftaliev/timetable/commit/4e297a22b921ea30090da172202f5a0b2899c337))
+* release commits deploy ([3908943](https://github.com/kamilniftaliev/timetable/commit/3908943df071327fec34e7fc3efafb7b6c4cdf06))
+
 # [1.4.0](https://github.com/kamilniftaliev/timetable/compare/v1.3.0...v1.4.0) (2025-09-28)
 
 
