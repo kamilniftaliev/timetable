@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/kamilniftaliev/timetable/compare/v1.4.2...v1.4.3) (2025-09-29)
+
+
+### Bug Fixes
+
+* selector clear button color ([e5dddbc](https://github.com/kamilniftaliev/timetable/commit/e5dddbc5ab1cd190f0ade260fc5b58c05f01d33f))
+
 ## [1.4.2](https://github.com/kamilniftaliev/timetable/compare/v1.4.1...v1.4.2) (2025-09-29)
 
 
