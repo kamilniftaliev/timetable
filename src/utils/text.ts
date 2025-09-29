@@ -23,12 +23,21 @@ export function getTitle({
   return title.replaceAll(/\s+/g, " ");
 }
 
-export function getNextMondayDate() {
-  // Get next week's Monday
-  const nextMonday = moment().add(1, "weeks").startOf("isoWeek");
+export function getMondayDate() {
+  const date = moment();
+  let startOfTheWeek: moment.Moment;
+  const today = date.day();
+
+  if (today > 0) {
+    // This next week's Monday
+    startOfTheWeek = date.startOf("week");
+  } else {
+    // Get next week's Monday
+    startOfTheWeek = moment().add(1, "weeks").startOf("isoWeek");
+  }
 
   // Format as "D MMMM YYYY"
-  return nextMonday
+  return startOfTheWeek
     .format("D MMMM YYYY")
     .replace(/\b\p{L}/u, (c) => c.toUpperCase());
 }

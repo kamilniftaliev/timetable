@@ -1,4 +1,4 @@
-import { getNextMondayDate, getTitle } from "@/utils";
+import { getMondayDate, getTitle } from "@/utils";
 import { cn } from "@/utils";
 import { ClassValue } from "clsx";
 
@@ -15,7 +15,7 @@ export function Title({ className, shiftNumber }: Props) {
         className,
       )}
     >
-      {getTitle({ shiftNumber })} ({getNextMondayDate()})
+      {getTitle({ shiftNumber })} ({getMondayDate()})
     </h1>
   );
 }
