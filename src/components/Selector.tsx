@@ -53,12 +53,12 @@ export function Selector({ onChange, selectedValue, options, label }: Props) {
         {selectedValue !== firstOptionValue && (
           <Button
             color="alternative"
-            className="cursor-pointer px-2"
+            className="cursor-pointer border border-gray-300 bg-gray-100 px-2 dark:border-gray-500 dark:bg-gray-700"
             onClick={handleChange}
             value={firstOptionValue}
           >
             <IoMdCloseCircleOutline
-              className={cn(ICON_SIZE_CLASSES, "text-white")}
+              className={cn(ICON_SIZE_CLASSES, "text-gray-600 dark:text-white")}
             />
           </Button>
         )}
