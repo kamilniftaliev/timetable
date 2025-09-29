@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/kamilniftaliev/timetable/compare/v1.4.1...v1.4.2) (2025-09-29)
+
+
+### Bug Fixes
+
+* start of the week date in title ([a38d916](https://github.com/kamilniftaliev/timetable/commit/a38d9161af956681c0535e13879adf3f2cf19249))
+
 ## [1.4.1](https://github.com/kamilniftaliev/timetable/compare/v1.4.0...v1.4.1) (2025-09-28)
 
 
