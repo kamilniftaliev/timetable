@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/kamilniftaliev/timetable/compare/v1.4.3...v1.5.0) (2025-10-01)
+
+
+### Features
+
+* period times & dark mode print colors fix ([3d0de4b](https://github.com/kamilniftaliev/timetable/commit/3d0de4bafcb3ff87fe0b9a8e213b5a091e4bbe40))
+
 ## [1.4.3](https://github.com/kamilniftaliev/timetable/compare/v1.4.2...v1.4.3) (2025-09-29)
 
 
