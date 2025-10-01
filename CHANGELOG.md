@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/kamilniftaliev/timetable/compare/v1.5.0...v1.5.1) (2025-10-01)
+
+
+### Bug Fixes
+
+* 2nd shift period times ([18e1222](https://github.com/kamilniftaliev/timetable/commit/18e12223c8dafd8f83ec05dffa72e79a1fb3478d))
+
 # [1.5.0](https://github.com/kamilniftaliev/timetable/compare/v1.4.3...v1.5.0) (2025-10-01)
 
 
