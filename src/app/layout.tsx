@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body
         className={cn(
-          "bg-white p-4 antialiased md:p-8 dark:bg-gray-900 dark:text-white print:p-2",
+          "bg-white p-4 antialiased md:p-8 dark:bg-gray-900 dark:text-white print:bg-white print:p-2 print:text-black",
         )}
       >
         <ThemeProvider>

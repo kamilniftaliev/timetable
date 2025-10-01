@@ -16,12 +16,14 @@ import {
   SELECTOR_CLASS_OPTIONS,
   SELECTOR_TEACHER_OPTIONS,
   TABLE_CLASSES,
+  PERIOD_TIMES,
 } from "@/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Title } from "./Title";
 import { Selector } from "./Selector";
 import { ShareButton } from "./ShareButton";
 import { useTimetableData } from "@/hooks";
+import { FaRegClock } from "react-icons/fa";
 
 export default function Table() {
   const router = useRouter();
@@ -143,14 +145,14 @@ export default function Table() {
                     {view.name}
                   </h2>
                   <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)] print:max-w-full">
-                    <table className="mx-auto border-4 dark:border-white">
+                    <table className="mx-auto border-4 dark:border-white print:border-black">
                       <tbody>
                         {days.map((day, dayIndex) => {
                           return periods.length ? (
                             <tr key={day.id} className="border-t-3">
                               <td
                                 className={cn(
-                                  "sticky left-0",
+                                  "sticky left-0 border-l-3 border-black",
                                   TABLE_CLASSES.stickyCell,
                                 )}
                               >
@@ -176,12 +178,27 @@ export default function Table() {
                                     <thead>
                                       <tr>
                                         <th
-                                          className={TABLE_CLASSES.numberCell}
+                                          className={cn(TABLE_CLASSES.timeCell)}
                                         >
                                           <div
-                                            className={
-                                              TABLE_CLASSES.numberContainer
-                                            }
+                                            className={cn(
+                                              TABLE_CLASSES.timeContainer,
+                                              "py-2 print:py-1!",
+                                            )}
+                                          >
+                                            <FaRegClock className="mx-auto" />
+                                          </div>
+                                        </th>
+                                        <th
+                                          className={cn(
+                                            TABLE_CLASSES.numberCell,
+                                          )}
+                                        >
+                                          <div
+                                            className={cn(
+                                              TABLE_CLASSES.numberContainer,
+                                              "print:py-0.5!",
+                                            )}
                                           >
                                             #
                                           </div>
@@ -204,6 +221,10 @@ export default function Table() {
                                         classes[0],
                                         period,
                                       );
+                                      const periodTime =
+                                        viewIndex > 0
+                                          ? periodIndex + 7
+                                          : periodIndex;
 
                                       return (
                                         <tr
@@ -215,12 +236,27 @@ export default function Table() {
                                           key={period.id}
                                         >
                                           <td
-                                            className={TABLE_CLASSES.numberCell}
+                                            className={cn(
+                                              TABLE_CLASSES.timeCell,
+                                            )}
                                           >
                                             <div
-                                              className={
-                                                TABLE_CLASSES.numberContainer
-                                              }
+                                              className={cn(
+                                                TABLE_CLASSES.timeContainer,
+                                              )}
+                                            >
+                                              {PERIOD_TIMES[periodTime]}
+                                            </div>
+                                          </td>
+                                          <td
+                                            className={cn(
+                                              TABLE_CLASSES.numberCell,
+                                            )}
+                                          >
+                                            <div
+                                              className={cn(
+                                                TABLE_CLASSES.numberContainer,
+                                              )}
                                             >
                                               {position}
                                             </div>

@@ -10,14 +10,20 @@ export const POSITION_SUFFIX = {
 };
 
 export const TABLE_CLASSES = {
-  numberCell:
-    "w-8 max-w-8 print:w-6 max-w-6 text-center font-bold sticky left-7 print:left-5 print:text-xs",
   stickyCell: `bg-gray-100 dark:bg-gray-800 print:text-xs`,
+  numberCell:
+    "w-8 print:w-6 text-center font-bold sticky left-23 print:left-5 print:text-xs",
   get numberContainer() {
     return (
-      "w-8 max-w-8 print:w-6 print:max-w-6 px-2 print:px-1 border-x-3 border-black dark:border-white leading-8 print:leading-4 " +
+      "w-8 print:w-6 px-2 print:px-1 border-x-3 border-black dark:border-white print:border-black leading-8 print:leading-4! " +
       this.stickyCell
     );
+  },
+  get timeCell() {
+    return this.numberCell + " w-16 print:w-11 left-7 ";
+  },
+  get timeContainer() {
+    return this.numberContainer + " border-r-0 w-16 print:w-11 ";
   },
 };
 
