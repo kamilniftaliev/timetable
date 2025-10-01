@@ -223,7 +223,7 @@ export default function Table() {
                                       );
                                       const periodTime =
                                         viewIndex > 0
-                                          ? periodIndex + 7
+                                          ? periodIndex + 6
                                           : periodIndex;
 
                                       return (
