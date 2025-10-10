@@ -93,7 +93,7 @@ export default function Table() {
 
   return (
     <>
-      <div className="flex w-full flex-col justify-center gap-4 md:flex-row print:hidden">
+      <div className="flex flex-col justify-center w-full gap-4 md:flex-row print:hidden">
         <Selector
           label="Müəllim:"
           onChange={onTeacherSelect}
@@ -119,7 +119,7 @@ export default function Table() {
             selectedClassId={selectedClassId}
             selectedTeacherId={selectedTeacherId}
           />
-          <div className="flex w-full flex-col items-center gap-8">
+          <div className="flex flex-col items-center w-full gap-8">
             {data.views.map((view, viewIndex) => {
               const classes = data.classes.filter((cl) =>
                 view.entityIds?.includes(cl.id),
@@ -134,14 +134,14 @@ export default function Table() {
               return classes.length ? (
                 <div
                   key={view.id}
-                  className="view-container mt-8 flex flex-col justify-center gap-6 print:mt-0 print:gap-2"
+                  className="flex flex-col justify-center gap-6 mt-8 view-container print:mt-0 print:gap-2"
                 >
                   <Title
                     shiftNumber={data.views.length > 1 ? viewIndex + 1 : 0}
                     className="hidden print:block"
                   />
 
-                  <h2 className="text-center text-3xl font-bold print:hidden">
+                  <h2 className="text-3xl font-bold text-center print:hidden">
                     {view.name}
                   </h2>
                   <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)] print:max-w-full">
@@ -205,7 +205,10 @@ export default function Table() {
                                         </th>
                                         {classes.map((cl, classIndex) => (
                                           <th
-                                            className={getCellClass(classIndex)}
+                                            className={cn(
+                                              getCellClass(classIndex),
+                                              "sticky",
+                                            )}
                                             key={cl.id}
                                           >
                                             {cl.name}

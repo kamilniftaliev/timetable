@@ -20,6 +20,7 @@ export function ShareButton({
   selectedClassId,
   selectedTeacherId,
 }: Props) {
+  const [ready, setReady] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
@@ -60,10 +61,14 @@ export function ShareButton({
     }
   }, [teacherName, className, selectedTeacherId, selectedClassId]);
 
+  useEffect(() => {
+    setReady(true);
+  }, []);
+
   return (
     <>
       <Button
-        className="cursor-pointer gap-2 bg-neutral-900 text-xl font-bold text-white hover:bg-blue-900 md:text-base dark:bg-white dark:text-gray-900 dark:hover:bg-blue-900 dark:hover:text-white print:hidden"
+        className="gap-2 text-xl font-bold text-white cursor-pointer bg-neutral-900 hover:bg-blue-900 md:text-base dark:bg-white dark:text-gray-900 dark:hover:bg-blue-900 dark:hover:text-white print:hidden"
         onClick={share}
       >
         {linkCopied ? (
@@ -73,17 +78,21 @@ export function ShareButton({
           </>
         ) : (
           <>
-            {navigator.share ? (
-              <MdOutlineIosShare className={ICON_SIZE_CLASSES} />
-            ) : (
-              <FaLink className={ICON_SIZE_CLASSES} />
+            {ready && (
+              <>
+                {navigator.share ? (
+                  <MdOutlineIosShare className={ICON_SIZE_CLASSES} />
+                ) : (
+                  <FaLink className={ICON_SIZE_CLASSES} />
+                )}
+              </>
             )}
             Paylaş
           </>
         )}
       </Button>
       {linkCopied && (
-        <p className="text-center text-xl font-semibold">
+        <p className="text-xl font-semibold text-center">
           Bu linkə keçid edən hər kəs eyni cədvəli görəcək.
         </p>
       )}

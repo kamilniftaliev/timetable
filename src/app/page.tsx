@@ -29,7 +29,7 @@ export default function Home() {
     <>
       {/* <PushNotificationManager /> */}
       {/* <InstallPrompt /> */}
-      <main className="flex h-full flex-col items-center gap-4 print:gap-0">
+      <main className="flex flex-col items-center h-full gap-4 print:gap-0">
         <Title className="print:hidden" />
 
         <Suspense
