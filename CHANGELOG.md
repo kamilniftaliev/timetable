@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/kamilniftaliev/timetable/compare/v1.5.2...v1.5.3) (2025-10-11)
+
+
+### Bug Fixes
+
+* left side on mobile - z-index ([b797817](https://github.com/kamilniftaliev/timetable/commit/b797817a4eb147d533393737bee29120b0f9387c))
+
 ## [1.5.2](https://github.com/kamilniftaliev/timetable/compare/v1.5.1...v1.5.2) (2025-10-01)
 
 
