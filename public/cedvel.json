@@ -2,7 +2,7 @@
     "id": "58fcb12e-0893-4c22-a4bd-14a91b80ef79",
     "name": "test1234@gmail.com",
     "createdAt": "2025-10-09T19:05:20.050Z",
-    "updatedAt": "2025-10-18T18:35:38.099Z",
+    "updatedAt": "2025-10-18T18:55:21.543Z",
     "schoolId": "45d67b7a-2302-4145-bb6f-45d4e06e54bd",
     "schoolName": "test1234@gmail.com",
     "year": "2025",
@@ -14529,6 +14529,60 @@
                     "dayId": "d7f5c53f-6df8-4b8b-b65e-5bb6385a9a15",
                     "periodId": "85da3c3c-5040-4787-9d35-854403e1e8b1"
                 }
+            ]
+        }
+    ],
+    "views": [
+        {
+            "id": "0e8fe436-bb11-4741-93da-f391a76aa0bd",
+            "position": 5,
+            "name": "1-ci növbə",
+            "shortName": "1n",
+            "entityIds": [
+                "69a9a8bd-96bc-470f-90f3-8970f0a99e2e",
+                "3e47e191-091f-4f32-8abe-8e03b9a7f2bc",
+                "44b03f23-3f88-4d16-bd59-c22a1b1e363b",
+                "4d8918ec-c722-4e13-8d10-8cf71998a557",
+                "09e2e7b3-5bbc-410e-8de3-591e1aa3e2ea",
+                "82eb576f-65a6-4269-819d-9dfbf7b9cad3",
+                "d31afeb3-d5d2-402d-8084-1b8282a6d0be",
+                "bcb29517-293b-406c-9496-605fc0ca4e37",
+                "57c2e40a-474a-4c14-b27b-969b4c0ae669",
+                "262aa9b4-6937-41e1-90ac-279a8e2bf352",
+                "859cec39-781c-465d-8436-01a2682c9207",
+                "5e7a2fcd-82fb-4f45-833c-c315179f8427",
+                "7c282224-ac87-46ea-9e7c-f69e0ecb6f3c",
+                "a6f2ff5a-d7e4-4f13-9595-cfffee51618b",
+                "1c871fc9-bddd-467d-b1c2-f4a9506cbd00",
+                "a51e9bb0-921f-488c-8b08-5333d4e264b7",
+                "1efae016-8c19-42c5-a6d3-029811bb4be9",
+                "3f628f8e-a817-4f83-8a73-324855546110"
+            ],
+            "excludedPeriodIds": [
+                "38497b67-02ef-4db1-8646-d05b5124fe4b",
+                "462f3713-bfaf-4f08-ad5f-c85256b07647",
+                "e7b19470-5238-4714-b3ab-a45c3f6c7d9d",
+                "6f7ef054-58a8-462b-b31a-e3481997abb7"
+            ]
+        },
+        {
+            "id": "fb0104da-efb2-4790-9fc8-1f1d78b3ca90",
+            "position": 6,
+            "name": "2-ci növbə",
+            "shortName": "2n",
+            "entityIds": [
+                "fbfb4270-c89c-4d43-852d-f037d53141b5",
+                "3a068d99-44a0-401a-a7c4-f71a7c0593f2",
+                "27f313a3-0c05-4d69-8311-126e046e5fc5",
+                "047b0e44-ab9e-448c-979b-b2442621a902"
+            ],
+            "excludedPeriodIds": [
+                "6240fd49-30bd-41a6-9ed2-6d5b7b0ed51c",
+                "e002b164-a02c-4a09-a051-f2a5a8725520",
+                "58f25c82-aaa1-41de-8ea2-e96c3b3958bc",
+                "f8efc0da-5f5c-4c9f-b084-ff218e6ed8d2",
+                "018dc832-33c4-4b19-aea0-0c918a55d8c1",
+                "f4c1c6e5-9695-483d-8c63-811e6dbf0e28"
             ]
         }
     ]
