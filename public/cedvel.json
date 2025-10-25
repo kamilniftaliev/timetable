@@ -2,7 +2,7 @@
     "id": "58fcb12e-0893-4c22-a4bd-14a91b80ef79",
     "name": "cedvel",
     "createdAt": "2025-10-09T19:05:20.050Z",
-    "updatedAt": "2025-10-24T22:40:09.250Z",
+    "updatedAt": "2025-10-25T10:40:03.444Z",
     "schoolId": "45d67b7a-2302-4145-bb6f-45d4e06e54bd",
     "schoolName": "test1234@gmail.com",
     "year": "2025",
@@ -12049,8 +12049,9 @@
                 },
                 {
                     "id": "36ca0967-ef41-45fa-b9b7-4692df1ca555",
-                    "dayId": "bf3b0b64-2239-4237-a467-234c672f0ba0",
-                    "periodId": "85da3c3c-5040-4787-9d35-854403e1e8b1"
+                    "dayId": "de0b8450-7fef-4847-b378-fd5201053d21",
+                    "periodId": "85da3c3c-5040-4787-9d35-854403e1e8b1",
+                    "pinned": true
                 }
             ]
         },
