@@ -33,15 +33,15 @@ export function Selector({ onChange, selectedValue, options, label }: Props) {
   const firstOptionValue = options[0].value;
 
   return (
-    <div className="flex flex-col items-center gap-2 md:w-auto">
+    <div className="flex flex-col items-center gap-2 md:w-xs">
       <Label className="text-xl font-semibold" htmlFor={selectorId}>
         {label}
       </Label>
-      <div className="flex w-full items-center gap-2">
+      <div className="flex w-full items-center justify-center gap-2">
         <Select
           onChange={handleChange}
           id={selectorId}
-          className="selector-container max-w-sm grow text-lg font-medium md:w-sm"
+          className="selector-container max-w-xs grow text-lg font-medium md:w-xs"
           value={selectedValue}
         >
           {options.map(({ value, name }) => (

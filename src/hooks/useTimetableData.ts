@@ -85,7 +85,7 @@ export function useTimetableData(
             return aPeriod.position - bPeriod.position;
           })
       : [];
-    let views = timetable.views.filter((view) => !view.isDefault);
+    let views = timetable.views?.filter((view) => !view.isDefault);
 
     views = selectedTeacherId
       ? views.filter((view) =>

@@ -29,9 +29,11 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4 md:max-w-full md:items-center print:hidden">
-      <p className="text-center text-xl font-bold">
-        {shiftText} toplam {selectedTeacherCards.length} dərs
-      </p>
+      {data.views.length > 1 && (
+        <p className="text-center text-xl font-bold">
+          {shiftText} toplam {selectedTeacherCards.length} dərs
+        </p>
+      )}
 
       <div className="flex w-full flex-col items-start justify-center gap-4 md:flex-row">
         {groupedByClass.length > 1 && (
@@ -50,7 +52,7 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
                   <div className="flex w-full justify-center gap-1.5 truncate">
                     <span className="font-bold uppercase">{className}</span>
                     <span>
-                      класс - {amount} {getLessonSuffix(amount)}
+                      sinif - {amount} {getLessonSuffix(amount)}
                     </span>
                   </div>
                 </ListGroupItem>
@@ -72,9 +74,9 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
               const position = getPeriodPosition(data, classObj, period);
               const isPrevDifferentDay =
                 arr[i - 1] && arr[i].dayId !== arr[i - 1].dayId;
-              const have2Shifts = data.views.length === 2;
+              const have2Shifts = data.views?.length === 2;
               const classShiftIndex = have2Shifts
-                ? data.views.findIndex((view) =>
+                ? data.views?.findIndex((view) =>
                     view.entityIds.includes(classObj.id),
                   )
                 : 0;
@@ -92,15 +94,15 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
                 >
                   <div className="flex w-full gap-1.5 truncate">
                     <span>{day.shortName}</span>
-                    {have2Shifts && <span>{classShiftIndex + 1}-ая см.</span>}
+                    {have2Shifts && <span>{classShiftIndex + 1}-ci böl.</span>}
                     <span>
-                      {position}-{POSITION_SUFFIX[position]} урок
+                      {position}-{POSITION_SUFFIX[position]} dərs
                     </span>
                     <span>
                       <span className="font-bold uppercase">
                         {classObj.name}
                       </span>{" "}
-                      кл.
+                      sin.
                     </span>
                     <span>({subject.shortName})</span>
                   </div>

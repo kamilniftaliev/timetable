@@ -5,7 +5,7 @@ import {
   getCellClass,
   getDays,
   getPeriodPosition,
-  getSubject,
+  getSubjects,
   getViewPeriods,
   reportAnalyticEvent,
 } from "@/utils";
@@ -93,7 +93,7 @@ export default function Table() {
 
   return (
     <>
-      <div className="flex flex-col justify-center w-full gap-4 md:flex-row print:hidden">
+      <div className="flex w-full flex-col justify-center gap-4 md:flex-row print:hidden">
         <Selector
           label="Müəllim:"
           onChange={onTeacherSelect}
@@ -119,8 +119,8 @@ export default function Table() {
             selectedClassId={selectedClassId}
             selectedTeacherId={selectedTeacherId}
           />
-          <div className="flex flex-col items-center w-full gap-8">
-            {data.views.map((view, viewIndex) => {
+          <div className="flex w-full flex-col items-center gap-8">
+            {data.views?.map((view, viewIndex) => {
               const classes = data.classes.filter((cl) =>
                 view.entityIds?.includes(cl.id),
               );
@@ -134,16 +134,20 @@ export default function Table() {
               return classes.length ? (
                 <div
                   key={view.id}
-                  className="flex flex-col justify-center gap-6 mt-8 view-container print:mt-0 print:gap-2"
+                  className="view-container flex flex-col justify-center gap-6 print:mt-0 print:gap-2"
                 >
-                  <Title
-                    shiftNumber={data.views.length > 1 ? viewIndex + 1 : 0}
-                    className="hidden print:block"
-                  />
+                  {data.views?.length > 1 && (
+                    <>
+                      <Title
+                        shiftNumber={data.views?.length > 1 ? viewIndex + 1 : 0}
+                        className="hidden print:block"
+                      />
 
-                  <h2 className="text-3xl font-bold text-center print:hidden">
-                    {view.name}
-                  </h2>
+                      <h2 className="text-center text-3xl font-bold print:hidden">
+                        {view.name}
+                      </h2>
+                    </>
+                  )}
                   <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)] print:max-w-full">
                     <table className="mx-auto border-4 dark:border-white print:border-black">
                       <tbody>
@@ -152,7 +156,7 @@ export default function Table() {
                             <tr key={day.id} className="border-t-3">
                               <td
                                 className={cn(
-                                  "sticky left-0 border-l-3 border-black",
+                                  "sticky left-0 border-l-3 border-black border-l-red-600",
                                   TABLE_CLASSES.stickyCell,
                                 )}
                               >
@@ -265,12 +269,13 @@ export default function Table() {
                                             </div>
                                           </td>
                                           {classes.map((cl, classIndex) => {
-                                            const subject = getSubject(
+                                            const subjects = getSubjects(
                                               data,
                                               cl,
                                               day,
                                               period,
                                             );
+                                            console.log("subjects", subjects);
 
                                             return (
                                               <td
@@ -279,29 +284,45 @@ export default function Table() {
                                                 )}
                                                 key={cl.id + period.id}
                                               >
-                                                {subject ? (
-                                                  <>
-                                                    <span
-                                                      className={cn(
-                                                        overflowsHorizontally
-                                                          ? "print:hidden"
-                                                          : "",
-                                                      )}
-                                                    >
-                                                      {subject.name}
-                                                    </span>
-                                                    <span
-                                                      className={cn("hidden", {
-                                                        "print:block":
-                                                          overflowsHorizontally,
-                                                      })}
-                                                    >
-                                                      {subject.shortName}
-                                                    </span>
-                                                  </>
-                                                ) : (
-                                                  ""
-                                                )}
+                                                {subjects.length > 0
+                                                  ? subjects.map(
+                                                      (subject, index) => (
+                                                        <div
+                                                          key={subject.id}
+                                                          className="mr-[3px] inline-block"
+                                                        >
+                                                          <span
+                                                            className={cn(
+                                                              overflowsHorizontally
+                                                                ? "print:hidden"
+                                                                : "",
+                                                            )}
+                                                          >
+                                                            {index > 0 && "və "}
+                                                            {
+                                                              subject[
+                                                                subjects.length >
+                                                                1
+                                                                  ? "shortName"
+                                                                  : "name"
+                                                              ]
+                                                            }
+                                                          </span>
+                                                          <span
+                                                            className={cn(
+                                                              "hidden",
+                                                              {
+                                                                "print:block":
+                                                                  overflowsHorizontally,
+                                                              },
+                                                            )}
+                                                          >
+                                                            {subject.shortName}
+                                                          </span>
+                                                        </div>
+                                                      ),
+                                                    )
+                                                  : ""}
                                               </td>
                                             );
                                           })}

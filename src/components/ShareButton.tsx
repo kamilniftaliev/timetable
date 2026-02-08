@@ -68,7 +68,7 @@ export function ShareButton({
   return (
     <>
       <Button
-        className="gap-2 text-xl font-bold text-white cursor-pointer bg-neutral-900 hover:bg-blue-900 md:text-base dark:bg-white dark:text-gray-900 dark:hover:bg-blue-900 dark:hover:text-white print:hidden"
+        className="cursor-pointer gap-2 bg-neutral-900 text-xl font-bold text-white hover:bg-blue-900 md:text-base dark:bg-white dark:text-gray-900 dark:hover:bg-blue-900 dark:hover:text-white print:hidden"
         onClick={share}
       >
         {linkCopied ? (
@@ -92,7 +92,7 @@ export function ShareButton({
         )}
       </Button>
       {linkCopied && (
-        <p className="text-xl font-semibold text-center">
+        <p className="text-center text-xl font-semibold">
           Bu linkə keçid edən hər kəs eyni cədvəli görəcək.
         </p>
       )}

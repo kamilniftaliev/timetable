@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getShiftText(data: Timetable) {
   const shiftName =
-    data.views.length === 1 ? `Yalnız ${data.views[0].name}` : "Hər iki növbə";
+    data.views?.length === 1 ? `Yalnız ${data.views[0].name}` : "Hər iki növbə";
 
   return `${shiftName} üzrə`;
 }

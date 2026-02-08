@@ -65,9 +65,9 @@ export function getPeriodPosition(
   period: Period,
 ) {
   const view =
-    data.views.length === 1
+    data.views?.length === 1
       ? data.views[0]
-      : data.views.find((view) => view.entityIds.includes(classObj.id));
+      : data.views?.find((view) => view.entityIds.includes(classObj.id));
 
   const isFirstShift = view.name.includes("1");
 
@@ -76,13 +76,13 @@ export function getPeriodPosition(
   return position;
 }
 
-export function getSubject(
+export function getSubjects(
   data: Timetable,
   cl: Class,
   day: Day,
   period: Period,
 ) {
-  const activity = data.activities.find(
+  const activities = data.activities.filter(
     (activity) =>
       activity.groupIds.some((groupId) =>
         cl.groupSets.some((group) =>
@@ -94,8 +94,7 @@ export function getSubject(
       ),
   );
 
-  return (
-    activity &&
-    data.subjects.find((subject) => subject.id === activity.subjectId)
+  return activities.map((activity) =>
+    data.subjects.find((subject) => subject.id === activity.subjectId),
   );
 }

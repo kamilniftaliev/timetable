@@ -11,11 +11,11 @@ export function Title({ className, shiftNumber }: Props) {
   return (
     <h1
       className={cn(
-        "w-full px-6 text-center text-2xl font-bold md:w-2/3 print:w-full print:text-base",
+        "w-full px-6 text-center text-2xl font-bold sm:w-4/5 lg:w-full print:w-full print:text-base",
         className,
       )}
     >
-      {getTitle({ shiftNumber })} ({getMondayDate()})
+      {getTitle({ shiftNumber })} <br /> ({getMondayDate()})
     </h1>
   );
 }

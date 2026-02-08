@@ -12,7 +12,7 @@ export function getTitle({
   teacher?: string;
   className?: string;
 } = {}) {
-  let title = `Xaçmaz şəhəri Akademik Zərifə Əliyeva adına 8 nömrəli təbiət təmayüllü liseyin rus bölməsi ${shiftNumber ? `${shiftNumber}-ci növbə` : ""} üzrə cədvəli`;
+  let title = `Xaçmaz şəhəri Niyazoba kənd tam orta məktəbinin dərs cədvəli`;
 
   if (teacher) {
     title = `${teacher} üçün ${className ? `${className} sinfi üzrə ` : ""} cədvəl`;
@@ -43,9 +43,9 @@ export function getMondayDate() {
 }
 
 export function getLessonSuffix(amount: number) {
-  if (amount === 1) return "урок";
+  if (amount === 1) return "dərs";
 
-  if (amount < 5) return "урока";
+  if (amount < 5) return "dərs";
 
-  return "уроков";
+  return "dərs";
 }
