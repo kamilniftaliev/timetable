@@ -61,7 +61,7 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
           </ListGroup>
         )}
 
-        <ListGroup className="mx-auto border-2 border-gray-400 text-lg md:w-80 dark:border-gray-400">
+        <ListGroup className="mx-auto border-2 border-gray-400 text-lg md:mx-0 md:w-80 dark:border-gray-400">
           {selectedTeacherCards.map(
             ({ id, classObj, dayId, periodId, subjectId }, i, arr) => {
               const day = data.days.find((day) => day.id === dayId);
