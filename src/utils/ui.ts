@@ -15,7 +15,7 @@ export function getShiftText(data: Timetable) {
 
 export function getCellClass(classIndex: number) {
   return cn(
-    `w-38 print:w-auto print:text-[10px] py-1 px-2 print:px-0.5 print:py-0 text-center truncate`,
+    `w-38 print:w-20 overflow-hidden print:text-[10px] py-1 px-2 print:px-0.5 print:py-0 text-center truncate`,
     {
       "border-l": classIndex > 0,
     },

@@ -9,7 +9,7 @@ import {
   getViewPeriods,
   reportAnalyticEvent,
 } from "@/utils";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { TeacherActivityList } from "./TeacherActivityList";
 import {
   timetable,
@@ -26,6 +26,19 @@ import { useTimetableData } from "@/hooks";
 import { FaRegClock } from "react-icons/fa";
 
 export default function Table() {
+  useEffect(() => {
+    const resetScrolls = () => {
+      document.querySelectorAll("*").forEach((el) => {
+        if (el.scrollTop !== 0 || el.scrollLeft !== 0) {
+          el.scrollTop = 0;
+          el.scrollLeft = 0;
+        }
+      });
+    };
+    window.addEventListener("beforeprint", resetScrolls);
+    return () => window.removeEventListener("beforeprint", resetScrolls);
+  }, []);
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -151,11 +164,11 @@ export default function Table() {
                     <table className="mx-auto border-separate border-spacing-0">
                       <thead>
                         <tr>
-                          <th className="sticky top-0 left-0 z-30 w-7 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:w-4.5 print:bg-white" />
+                          <th className="sticky top-0 left-0 z-30 w-7 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:w-4.5 print:border-black print:bg-white" />
                           <th
                             className={cn(
                               TABLE_CLASSES.timeCell,
-                              "top-0 z-30 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:bg-white",
+                              "top-0 z-30 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:border-black print:bg-white",
                             )}
                           >
                             <div
@@ -170,7 +183,7 @@ export default function Table() {
                           <th
                             className={cn(
                               TABLE_CLASSES.numberCell,
-                              "top-0 z-30 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:bg-white",
+                              "top-0 z-30 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:border-black print:bg-white",
                             )}
                           >
                             <div
@@ -186,7 +199,7 @@ export default function Table() {
                             <th
                               className={cn(
                                 getCellClass(classIndex),
-                                "sticky top-0 z-20 border-b-2 border-black bg-gray-50 font-bold dark:border-white dark:bg-gray-800 print:bg-white",
+                                "sticky top-0 z-20 border-b-2 border-black bg-gray-50 font-bold dark:border-white dark:bg-gray-800 print:border-black print:bg-white",
                               )}
                               key={cl.id}
                             >
