@@ -50,9 +50,9 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
                   key={className}
                 >
                   <div className="flex w-full justify-center gap-1.5 truncate">
-                    <span className="font-bold uppercase">{className}</span>
+                    <span className="font-bold">{className}</span>
                     <span>
-                      sinif - {amount} {getLessonSuffix(amount)}
+                      - {amount} {getLessonSuffix(amount)}
                     </span>
                   </div>
                 </ListGroupItem>
@@ -61,7 +61,7 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
           </ListGroup>
         )}
 
-        <ListGroup className="w-full border-2 border-gray-400 text-lg md:w-80 dark:border-gray-400">
+        <ListGroup className="mx-auto border-2 border-gray-400 text-lg md:w-80 dark:border-gray-400">
           {selectedTeacherCards.map(
             ({ id, classObj, dayId, periodId, subjectId }, i, arr) => {
               const day = data.days.find((day) => day.id === dayId);
@@ -92,17 +92,14 @@ export function TeacherActivityList({ data, selectedTeacherCards }: Props) {
                   )}
                   key={id}
                 >
-                  <div className="flex w-full gap-1.5 truncate">
+                  <div className="flex w-full justify-center gap-1.5 truncate">
                     <span>{day.shortName}</span>
                     {have2Shifts && <span>{classShiftIndex + 1}-ci böl.</span>}
                     <span>
                       {position}-{POSITION_SUFFIX[position]} dərs
                     </span>
                     <span>
-                      <span className="font-bold uppercase">
-                        {classObj.name}
-                      </span>{" "}
-                      sin.
+                      <span className="font-bold">{classObj.name}</span>{" "}
                     </span>
                     <span>({subject.shortName})</span>
                   </div>

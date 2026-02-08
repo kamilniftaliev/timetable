@@ -147,7 +147,7 @@ export default function Table() {
                       </h2>
                     </>
                   )}
-                  <div className="max-h-[80vh] max-w-[calc(100vw-40px)] overflow-auto border-3 border-black md:max-w-[calc(100vw-80px)] dark:border-white print:max-h-none print:max-w-full print:overflow-visible print:border-black">
+                  <div className="max-h-[90vh] max-w-[calc(100vw-40px)] overflow-auto border-3 border-black md:max-w-[calc(100vw-80px)] dark:border-white print:max-h-none print:max-w-full print:overflow-visible print:border-black">
                     <table className="mx-auto border-separate border-spacing-0">
                       <thead>
                         <tr>
@@ -272,7 +272,6 @@ export default function Table() {
                                         day,
                                         period,
                                       );
-                                      console.log("subjects", subjects);
 
                                       return (
                                         <td
