@@ -128,7 +128,6 @@ export default function Table() {
               const periods = getViewPeriods(data, view, selectedTeacherId);
               const days = getDays(data, selectedTeacherId);
 
-              const tableDataWidth = classes.length * 150;
               const dayNameMaxHeight = periods.length * 35;
 
               return classes.length ? (
@@ -148,192 +147,182 @@ export default function Table() {
                       </h2>
                     </>
                   )}
-                  <div className="max-w-[calc(100vw-40px)] overflow-auto md:max-w-[calc(100vw-80px)] print:max-w-full">
-                    <table className="mx-auto border-4 dark:border-white print:border-black">
+                  <div className="max-h-[80vh] max-w-[calc(100vw-40px)] overflow-auto border-3 border-black md:max-w-[calc(100vw-80px)] dark:border-white print:max-h-none print:max-w-full print:overflow-visible print:border-black">
+                    <table className="mx-auto border-separate border-spacing-0">
+                      <thead>
+                        <tr>
+                          <th className="sticky top-0 left-0 z-30 w-7 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:w-4.5 print:bg-white" />
+                          <th
+                            className={cn(
+                              TABLE_CLASSES.timeCell,
+                              "top-0 z-30 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:bg-white",
+                            )}
+                          >
+                            <div
+                              className={cn(
+                                TABLE_CLASSES.timeContainer,
+                                "py-2 print:py-1!",
+                              )}
+                            >
+                              <FaRegClock className="mx-auto" />
+                            </div>
+                          </th>
+                          <th
+                            className={cn(
+                              TABLE_CLASSES.numberCell,
+                              "top-0 z-30 border-b-2 border-black bg-gray-50 dark:border-white dark:bg-gray-800 print:bg-white",
+                            )}
+                          >
+                            <div
+                              className={cn(
+                                TABLE_CLASSES.numberContainer,
+                                "print:py-0.5!",
+                              )}
+                            >
+                              #
+                            </div>
+                          </th>
+                          {classes.map((cl, classIndex) => (
+                            <th
+                              className={cn(
+                                getCellClass(classIndex),
+                                "sticky top-0 z-20 border-b-2 border-black bg-gray-50 font-bold dark:border-white dark:bg-gray-800 print:bg-white",
+                              )}
+                              key={cl.id}
+                            >
+                              {cl.name}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
                       <tbody>
-                        {days.map((day, dayIndex) => {
-                          return periods.length ? (
-                            <tr key={day.id} className="border-t-3">
-                              <td
-                                className={cn(
-                                  "sticky left-0 border-l-3 border-black border-l-red-600",
-                                  TABLE_CLASSES.stickyCell,
-                                )}
-                              >
-                                <span
-                                  className="vertical-text -mb-1 w-7 truncate text-center font-bold text-ellipsis print:w-4.5"
-                                  style={{
-                                    maxHeight: dayNameMaxHeight,
-                                  }}
-                                >
-                                  {periods.length > 2
-                                    ? day.name
-                                    : day.shortName}
-                                </span>
-                              </td>
-                              <td>
-                                <table
-                                  className="inner-table"
-                                  style={{
-                                    maxWidth: tableDataWidth,
-                                  }}
-                                >
-                                  {dayIndex === 0 && (
-                                    <thead>
-                                      <tr>
-                                        <th
-                                          className={cn(TABLE_CLASSES.timeCell)}
+                        {days.map((day, dayIndex) =>
+                          periods.length
+                            ? periods.map((period, periodIndex) => {
+                                const position = getPeriodPosition(
+                                  data,
+                                  classes[0],
+                                  period,
+                                );
+                                const periodTime =
+                                  viewIndex > 0 ? periodIndex + 6 : periodIndex;
+
+                                const borderClass =
+                                  periodIndex === 0 && dayIndex > 0
+                                    ? "border-t-3"
+                                    : periodIndex > 0
+                                      ? "border-t"
+                                      : "";
+
+                                return (
+                                  <tr key={day.id + period.id}>
+                                    {periodIndex === 0 && (
+                                      <td
+                                        rowSpan={periods.length}
+                                        className={cn(
+                                          "sticky left-0",
+                                          TABLE_CLASSES.stickyCell,
+                                          dayIndex > 0 && "border-t-3",
+                                        )}
+                                      >
+                                        <span
+                                          className="vertical-text -mb-1 w-7 truncate text-center font-bold text-ellipsis print:w-4.5"
+                                          style={{
+                                            maxHeight: dayNameMaxHeight,
+                                          }}
                                         >
-                                          <div
-                                            className={cn(
-                                              TABLE_CLASSES.timeContainer,
-                                              "py-2 print:py-1!",
-                                            )}
-                                          >
-                                            <FaRegClock className="mx-auto" />
-                                          </div>
-                                        </th>
-                                        <th
-                                          className={cn(
-                                            TABLE_CLASSES.numberCell,
-                                          )}
-                                        >
-                                          <div
-                                            className={cn(
-                                              TABLE_CLASSES.numberContainer,
-                                              "print:py-0.5!",
-                                            )}
-                                          >
-                                            #
-                                          </div>
-                                        </th>
-                                        {classes.map((cl, classIndex) => (
-                                          <th
-                                            className={cn(
-                                              getCellClass(classIndex),
-                                              "sticky",
-                                            )}
-                                            key={cl.id}
-                                          >
-                                            {cl.name}
-                                          </th>
-                                        ))}
-                                      </tr>
-                                    </thead>
-                                  )}
-                                  <tbody>
-                                    {periods.map((period, periodIndex) => {
-                                      const position = getPeriodPosition(
+                                          {periods.length > 2
+                                            ? day.name
+                                            : day.shortName}
+                                        </span>
+                                      </td>
+                                    )}
+                                    <td
+                                      className={cn(
+                                        TABLE_CLASSES.timeCell,
+                                        borderClass,
+                                      )}
+                                    >
+                                      <div
+                                        className={cn(
+                                          TABLE_CLASSES.timeContainer,
+                                        )}
+                                      >
+                                        {PERIOD_TIMES[periodTime]}
+                                      </div>
+                                    </td>
+                                    <td
+                                      className={cn(
+                                        TABLE_CLASSES.numberCell,
+                                        borderClass,
+                                      )}
+                                    >
+                                      <div
+                                        className={cn(
+                                          TABLE_CLASSES.numberContainer,
+                                        )}
+                                      >
+                                        {position}
+                                      </div>
+                                    </td>
+                                    {classes.map((cl, classIndex) => {
+                                      const subjects = getSubjects(
                                         data,
-                                        classes[0],
+                                        cl,
+                                        day,
                                         period,
                                       );
-                                      const periodTime =
-                                        viewIndex > 0
-                                          ? periodIndex + 6
-                                          : periodIndex;
+                                      console.log("subjects", subjects);
 
                                       return (
-                                        <tr
+                                        <td
                                           className={cn(
-                                            (periodIndex > 0 ||
-                                              dayIndex === 0) &&
-                                              "border-t",
+                                            getCellClass(classIndex),
+                                            borderClass,
                                           )}
-                                          key={period.id}
+                                          key={cl.id + period.id}
                                         >
-                                          <td
-                                            className={cn(
-                                              TABLE_CLASSES.timeCell,
-                                            )}
-                                          >
-                                            <div
-                                              className={cn(
-                                                TABLE_CLASSES.timeContainer,
-                                              )}
-                                            >
-                                              {PERIOD_TIMES[periodTime]}
-                                            </div>
-                                          </td>
-                                          <td
-                                            className={cn(
-                                              TABLE_CLASSES.numberCell,
-                                            )}
-                                          >
-                                            <div
-                                              className={cn(
-                                                TABLE_CLASSES.numberContainer,
-                                              )}
-                                            >
-                                              {position}
-                                            </div>
-                                          </td>
-                                          {classes.map((cl, classIndex) => {
-                                            const subjects = getSubjects(
-                                              data,
-                                              cl,
-                                              day,
-                                              period,
-                                            );
-
-                                            return (
-                                              <td
-                                                className={getCellClass(
-                                                  classIndex,
-                                                )}
-                                                key={cl.id + period.id}
-                                              >
-                                                {subjects.length > 0
-                                                  ? subjects.map(
-                                                      (subject, index) => (
-                                                        <div
-                                                          key={subject.id}
-                                                          className="mr-[3px] inline-block"
-                                                        >
-                                                          <span
-                                                            className={cn(
-                                                              overflowsHorizontally
-                                                                ? "print:hidden"
-                                                                : "",
-                                                            )}
-                                                          >
-                                                            {index > 0 && "və "}
-                                                            {
-                                                              subject[
-                                                                subjects.length >
-                                                                1
-                                                                  ? "shortName"
-                                                                  : "name"
-                                                              ]
-                                                            }
-                                                          </span>
-                                                          <span
-                                                            className={cn(
-                                                              "hidden",
-                                                              {
-                                                                "print:block":
-                                                                  overflowsHorizontally,
-                                                              },
-                                                            )}
-                                                          >
-                                                            {subject.shortName}
-                                                          </span>
-                                                        </div>
-                                                      ),
-                                                    )
-                                                  : ""}
-                                              </td>
-                                            );
-                                          })}
-                                        </tr>
+                                          {subjects.length > 0
+                                            ? subjects.map((subject, index) => (
+                                                <div
+                                                  key={subject.id}
+                                                  className="mr-[3px] inline-block"
+                                                >
+                                                  <span
+                                                    className={cn(
+                                                      overflowsHorizontally
+                                                        ? "print:hidden"
+                                                        : "",
+                                                    )}
+                                                  >
+                                                    {index > 0 && "və "}
+                                                    {
+                                                      subject[
+                                                        subjects.length > 1
+                                                          ? "shortName"
+                                                          : "name"
+                                                      ]
+                                                    }
+                                                  </span>
+                                                  <span
+                                                    className={cn("hidden", {
+                                                      "print:block":
+                                                        overflowsHorizontally,
+                                                    })}
+                                                  >
+                                                    {subject.shortName}
+                                                  </span>
+                                                </div>
+                                              ))
+                                            : ""}
+                                        </td>
                                       );
                                     })}
-                                  </tbody>
-                                </table>
-                              </td>
-                            </tr>
-                          ) : null;
-                        })}
+                                  </tr>
+                                );
+                              })
+                            : null,
+                        )}
                       </tbody>
                     </table>
                   </div>
