@@ -275,7 +275,6 @@ export default function Table() {
                                               day,
                                               period,
                                             );
-                                            console.log("subjects", subjects);
 
                                             return (
                                               <td
