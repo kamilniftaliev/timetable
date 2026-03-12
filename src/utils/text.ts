@@ -1,3 +1,4 @@
+import { PAGE_DESCRIPTION } from "@/constants";
 import moment from "moment";
 import "moment/locale/az";
 
@@ -12,7 +13,8 @@ export function getTitle({
   teacher?: string;
   className?: string;
 } = {}) {
-  let title = `Xaçmaz şəhəri Niyazoba kənd tam orta məktəbinin dərs cədvəli`;
+  // let title =  `Xaçmaz şəhəri Niyazoba kənd tam orta məktəbinin dərs cədvəli`;
+  let title = PAGE_DESCRIPTION;
 
   if (teacher) {
     title = `${teacher} üçün ${className ? `${className} sinfi üzrə ` : ""} cədvəl`;

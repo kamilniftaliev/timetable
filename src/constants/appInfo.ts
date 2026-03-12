@@ -1,4 +1,4 @@
-export const PAGE_DESCRIPTION = `Xaçmaz şəhəri Niyazoba kənd tam orta məktəbinin dərs cədvəli`;
+export const PAGE_DESCRIPTION = `Xaçmaz şəhəri Niyazoba kənd tam orta ümumtəhsil məktəbinin dərs cədvəli`;
 
 export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || "dev";
 
