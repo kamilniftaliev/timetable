@@ -29,8 +29,8 @@ export default function Home() {
     <>
       {/* <PushNotificationManager /> */}
       {/* <InstallPrompt /> */}
-      <main className="flex h-full flex-col items-center gap-4 print:gap-0">
-        <Title className="print:hidden" />
+      <main className="flex h-full flex-col items-center gap-4">
+        <Title />
 
         <Suspense
           fallback={
