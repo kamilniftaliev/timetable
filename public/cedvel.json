@@ -1,14 +1,14 @@
 ﻿{
-    "id": "89fa52f2-be48-47ad-b5e1-56d0bcba712c",
-    "name": "niyazoba2@edu.az",
-    "createdAt": "2026-03-10T19:12:56.658Z",
-    "updatedAt": "2026-03-15T15:36:33.363Z",
-    "schoolId": "4c4527f3-5fe2-4071-9aad-9109e7be4d1d",
-    "schoolName": "niyazoba2@edu.az",
-    "year": "2026",
+    "id": "58fcb12e-0893-4c22-a4bd-14a91b80ef79",
+    "name": "cedvel",
+    "createdAt": "2025-10-09T19:05:20.050Z",
+    "updatedAt": "2025-11-02T15:44:47.880Z",
+    "schoolId": "45d67b7a-2302-4145-bb6f-45d4e06e54bd",
+    "schoolName": "test1234@gmail.com",
+    "year": "2025",
     "version": "2.0.0.0",
-    "creatorId": "a07d720a-b343-4a74-b563-c63a622820ac",
-    "editorId": "a07d720a-b343-4a74-b563-c63a622820ac",
+    "creatorId": "e12e3a20-f489-493c-a6f1-d8e6d964b9f4",
+    "editorId": "e12e3a20-f489-493c-a6f1-d8e6d964b9f4",
     "days": [
         {
             "id": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
