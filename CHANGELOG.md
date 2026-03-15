@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/kamilniftaliev/timetable/compare/v1.5.3...v1.5.4) (2026-03-15)
+
+
+### Bug Fixes
+
+* timetable update ([f816d8f](https://github.com/kamilniftaliev/timetable/commit/f816d8ffd22f6b9e20b111875a90ca4615ed20b1))
+
 ## [1.5.3](https://github.com/kamilniftaliev/timetable/compare/v1.5.2...v1.5.3) (2025-10-11)
 
 
