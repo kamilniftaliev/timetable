@@ -1,8 +1,8 @@
 {
-  "id": "26ead645-1f03-43de-9d67-ecbf042f2233",
+  "id": "89fa52f2-be48-47ad-b5e1-56d0bcba712c",
   "name": "niyazoba2@edu.az",
-  "createdAt": "2026-03-10T18:54:39.283Z",
-  "updatedAt": "2026-03-10T18:54:39.283Z",
+  "createdAt": "2026-03-10T19:12:56.658Z",
+  "updatedAt": "2026-03-15T15:36:33.363Z",
   "schoolId": "4c4527f3-5fe2-4071-9aad-9109e7be4d1d",
   "schoolName": "niyazoba2@edu.az",
   "year": "2026",
@@ -257,7 +257,7 @@
       "name": "İbtidai korpus",
       "shortName": "İk",
       "color": "#009300",
-      "capacity": 3,
+      "capacity": 1,
       "building": "İbtidai"
     }
   ],
@@ -645,6 +645,7 @@
         [2, 5, 1],
         [2, 6, 1],
         [2, 7, 1],
+        [3, 4, 1],
         [4, 1, 1],
         [4, 2, 1],
         [4, 3, 1],
@@ -1405,18 +1406,18 @@
       "cards": [
         {
           "id": "978f3746-a1aa-42a8-a848-20e56f840e66",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
           "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "e006201f-452a-4426-b5e7-48a7de4c401f",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
+          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
+          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
         },
         {
           "id": "9aedd881-6247-4d4f-b3f3-6986eba0d7ef",
-          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         },
         {
           "id": "e3a2dbb0-fa8f-4098-ae61-a2e668655ccd",
@@ -1426,17 +1427,17 @@
         {
           "id": "72574330-207d-436b-aaa1-0016d46d5441",
           "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         },
         {
           "id": "1beca4c3-f745-40aa-b2ec-b0be7bcd346f",
-          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         },
         {
           "id": "8913003b-3e5f-4248-9f3e-81ff39bb26c5",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "6bafd9b5-6746-4608-a7ac-31fa9c79666b",
@@ -1445,8 +1446,8 @@
         },
         {
           "id": "e2b7bec2-497b-47a0-bdc2-42380a31cabf",
-          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
-          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         }
       ]
     },
@@ -1464,7 +1465,7 @@
         {
           "id": "911c84ab-1da5-40f6-86a4-8e70cab03557",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         },
         {
           "id": "c1982fd6-3c5d-46fa-86b8-85c2a6b90d6f",
@@ -1505,7 +1506,7 @@
         {
           "id": "f3b0718a-cc59-44fc-916e-5343aa814606",
           "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
+          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
         }
       ]
     },
@@ -1518,12 +1519,12 @@
         {
           "id": "c97aa27d-8da4-4908-aae2-196302b3f28f",
           "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
-          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         },
         {
           "id": "94bc843e-60fc-4b9d-a931-6cd20059e923",
-          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         }
       ]
     },
@@ -1535,7 +1536,7 @@
       "cards": [
         {
           "id": "8be368b0-23b2-4856-a1be-5cb591119c56",
-          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
+          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
           "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         }
       ]
@@ -1548,8 +1549,8 @@
       "cards": [
         {
           "id": "86dd4fd7-567b-4c29-a1f1-0cd8eb341c27",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         }
       ]
     },
@@ -1567,12 +1568,12 @@
         {
           "id": "86022c1e-6521-49c4-9577-dde622cee3e2",
           "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
+          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         },
         {
           "id": "a5c76aa8-fc73-4205-879d-56def88bafdd",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "b1b29a83-9514-4095-998a-d7e6af3a8449",
@@ -1620,7 +1621,7 @@
         {
           "id": "341e88f1-ca84-4eee-9b0d-922ec745fe30",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         },
         {
           "id": "bc437db4-776c-491a-bd2b-7d95ce6df01e",
@@ -1630,7 +1631,7 @@
         {
           "id": "2187819b-4385-40b5-9149-222925e1b866",
           "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "bac59875-bc63-47ba-a92c-0ff452d75fd5",
@@ -1668,12 +1669,12 @@
         {
           "id": "210b4c99-0630-4c5e-9b6e-5357a9b4043b",
           "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         },
         {
           "id": "5484b398-b427-493b-bb24-1039bc1cbbc2",
           "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         },
         {
           "id": "4a22374b-a9a5-45ac-ba76-ac608cf02c92",
@@ -1731,7 +1732,7 @@
         {
           "id": "8a97f790-fabd-4b0f-afcd-8319afe1193a",
           "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
-          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         }
       ]
     },
@@ -1744,12 +1745,12 @@
         {
           "id": "2579ea99-07ee-4947-939e-a2e3e4f6ecf6",
           "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
-          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         },
         {
           "id": "3871ccc9-6033-48ce-90cc-da8fe2d66bb2",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         }
       ]
     },
@@ -1761,13 +1762,13 @@
       "cards": [
         {
           "id": "fb864938-751a-42c4-9220-fa134490e72e",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
           "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
         },
         {
           "id": "9eed3113-7a43-45ee-8ed8-f295ba5f7fff",
-          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
-          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         }
       ]
     },
@@ -1779,8 +1780,8 @@
       "cards": [
         {
           "id": "20d52c8a-ff6d-471a-aa8c-5837b8eb51fc",
-          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
         },
         {
           "id": "0d4d0a49-038c-418e-9813-4eeaaec7e7c0",
@@ -1797,8 +1798,8 @@
       "cards": [
         {
           "id": "4ba6618b-ac00-4ba7-a2a8-89269d48d145",
-          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         }
       ]
     },
@@ -1810,7 +1811,7 @@
       "cards": [
         {
           "id": "d604362e-91ac-449e-848a-5b4d20c2f9c4",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
           "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
         }
       ]
@@ -1848,13 +1849,13 @@
         },
         {
           "id": "0a803fdf-b85a-4ddf-82fa-2fa9174f6389",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
           "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "474b9034-4dd9-4159-9cc0-9c4c7940e230",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         },
         {
           "id": "73672ef8-bbcd-40cb-8ac7-dc36497ca8a5",
@@ -1882,7 +1883,7 @@
         {
           "id": "6de42804-b274-4e6d-98b1-875d6e8c8e35",
           "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         },
         {
           "id": "56fc8a02-032d-431e-8860-5062968521fd",
@@ -1892,7 +1893,7 @@
         {
           "id": "15c98e0b-9b04-4985-a3e8-9d1485af8191",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
         },
         {
           "id": "220b72be-543e-4517-826c-0c6af4f787a2",
@@ -1914,13 +1915,13 @@
       "cards": [
         {
           "id": "cad62a31-cfa6-4fde-a4c7-f0818f431494",
-          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
-          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
+          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         },
         {
           "id": "96097f7d-8195-4407-ab2f-be7c41560078",
-          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         }
       ]
     },
@@ -1932,7 +1933,7 @@
       "cards": [
         {
           "id": "448aefe9-40fd-46c0-a188-04427a4f73b1",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
           "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         }
       ]
@@ -1945,8 +1946,8 @@
       "cards": [
         {
           "id": "11c36db0-b31f-4f82-ad4d-c1f186a2b9ec",
-          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         }
       ]
     },
@@ -2358,7 +2359,7 @@
         {
           "id": "952aa353-edb1-429a-bd78-998280fcdc2d",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         }
       ]
     },
@@ -2394,7 +2395,7 @@
         {
           "id": "850e61e9-1058-4b83-80f3-065b01fe1f45",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "403237af-235a-4231-a4b2-8c39cc911bde",
@@ -2586,8 +2587,8 @@
         },
         {
           "id": "c4e3049b-3834-45a6-a489-3a5cf1640121",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         }
       ]
     },
@@ -2674,7 +2675,7 @@
       "cards": [
         {
           "id": "92cef9c9-6584-4815-81ec-b04372588c85",
-          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
+          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
           "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         }
       ]
@@ -2713,8 +2714,8 @@
       "cards": [
         {
           "id": "1f7bab22-382a-4bf2-afea-3e5818843c01",
-          "dayId": "2b543861-33d3-49a2-86ea-579a0c690e59",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         }
       ]
     },
@@ -2914,7 +2915,7 @@
         {
           "id": "7abaac51-981f-487d-b3ab-28cf4c5e2d0c",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "96b3a14e-0d46-4deb-ac3a-c28e79da0328",
@@ -3455,8 +3456,9 @@
         {
           "id": "adce278b-1735-49f0-ac5a-8a154e78fd61",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d",
-          "roomIds": ["f081692e-6261-49eb-84e4-0067cc2053a1"]
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca",
+          "roomIds": ["f081692e-6261-49eb-84e4-0067cc2053a1"],
+          "pinned": true
         }
       ]
     },
@@ -3469,8 +3471,8 @@
       "cards": [
         {
           "id": "b49e358c-e6ba-4ee9-9c7c-a41c58b6411f",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d",
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650",
           "roomIds": ["880cd6a6-4d6a-4fd2-b66e-1f9773cae95b"]
         }
       ]
@@ -3500,8 +3502,9 @@
         {
           "id": "02ee18fc-fda4-4a18-8164-1dab8e494b70",
           "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650",
-          "roomIds": ["f081692e-6261-49eb-84e4-0067cc2053a1"]
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e",
+          "roomIds": ["f081692e-6261-49eb-84e4-0067cc2053a1"],
+          "pinned": true
         }
       ]
     },
@@ -3559,7 +3562,7 @@
       "cards": [
         {
           "id": "78d4e9ca-e873-4d0c-ab84-7d18dc8c1eda",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
           "periodId": "1ca9523a-33bb-44cd-90cf-5398d1d49ede",
           "roomIds": ["880cd6a6-4d6a-4fd2-b66e-1f9773cae95b"]
         }
@@ -3589,14 +3592,14 @@
       "cards": [
         {
           "id": "da0d640a-b9b3-4673-bb3c-84397777eb14",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "0b6c0623-7268-40d6-9864-2eb0e09ec1c5",
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d",
           "roomIds": ["880cd6a6-4d6a-4fd2-b66e-1f9773cae95b"]
         },
         {
           "id": "05b71fe9-36d8-483e-aa03-1c6a6ddb13cf",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca",
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "0b6c0623-7268-40d6-9864-2eb0e09ec1c5",
           "roomIds": ["880cd6a6-4d6a-4fd2-b66e-1f9773cae95b"]
         }
       ]
@@ -3610,13 +3613,13 @@
       "cards": [
         {
           "id": "9c27d503-9d97-4d14-bc11-cefa8905297f",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e",
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca",
           "roomIds": ["880cd6a6-4d6a-4fd2-b66e-1f9773cae95b"]
         },
         {
           "id": "d341f16b-e72a-40a7-8f83-96a74fbe2fe5",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
           "periodId": "1ca9523a-33bb-44cd-90cf-5398d1d49ede",
           "roomIds": ["880cd6a6-4d6a-4fd2-b66e-1f9773cae95b"]
         }
@@ -3933,8 +3936,8 @@
       "cards": [
         {
           "id": "dc49e403-0473-4a65-b05e-64b3eb1bc691",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
         },
         {
           "id": "67cb6b38-8ed8-4461-a7b2-ff5cb6fb9b9b",
@@ -4028,7 +4031,7 @@
         },
         {
           "id": "2f0f422d-b219-4fc8-80db-b35c97526eaf",
-          "dayId": "54b76b97-8350-4c3a-87f5-4e1fe0cb10f2",
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
           "periodId": "1ca9523a-33bb-44cd-90cf-5398d1d49ede"
         }
       ]
@@ -4041,13 +4044,13 @@
       "cards": [
         {
           "id": "1b848dec-afd6-43e9-981b-8294db92ac82",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
+          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         },
         {
           "id": "1a3cb371-8c0e-45a2-8c37-8d6a4b627c49",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "d86fda08-d173-4df2-9d40-2eda00f7b38d"
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
+          "periodId": "58b73308-3e1c-4b8e-b6f1-6828dd83d650"
         }
       ]
     },
@@ -4059,7 +4062,7 @@
       "cards": [
         {
           "id": "29662678-ca13-4a19-96ba-c9b64b54e514",
-          "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
+          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
           "periodId": "811f0ef4-e13b-4e64-9580-41388b2f51ca"
         },
         {
@@ -4100,13 +4103,13 @@
       "cards": [
         {
           "id": "2cf46f00-6239-4d05-9d46-7b6c7ee93157",
-          "dayId": "bfd3de16-4961-46d7-805f-ed7b01de97c4",
-          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
+          "dayId": "e7e8942d-ac8b-44e6-bb28-dadca0bd93d6",
+          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
         },
         {
           "id": "d0f4f155-77d2-4856-b160-bc517cb99d66",
           "dayId": "cb9e815d-5265-4fbe-80e4-4d479cb6aa71",
-          "periodId": "a0da4bc9-be10-4266-b42c-4ae7d98cdd0e"
+          "periodId": "17a2f2e5-b031-40fa-9911-950b55653b88"
         }
       ]
     },
